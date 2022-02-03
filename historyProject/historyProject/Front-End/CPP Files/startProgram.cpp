@@ -32,7 +32,19 @@ void switchPages(sf::RenderWindow& window, sf::Event& userEvent, sf::Texture& cu
             pageFlag.timelineMenu = false;
             pageFlag.addAnEventMenu = false;
         }
+        else if ((userEvent.mouseButton.x >= 170 && userEvent.mouseButton.x <= 625) &&
+            (userEvent.mouseButton.y >= 340 && userEvent.mouseButton.y <= 450) &&
+            pageFlag.timelineMenu == true)
+        {
+            std::cout << "Enter add an event option \n";
 
+            currentPageTexture.loadFromFile("Images and fonts/Add an event form.png");
+
+            pageFlag.addAnEventMenu = true;
+            pageFlag.timelineMenu = false;
+            pageFlag.homeMenu = false;
+
+        }
         break;
     }
 
