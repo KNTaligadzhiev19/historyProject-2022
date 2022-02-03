@@ -43,7 +43,15 @@ void switchPages(sf::RenderWindow& window, sf::Event& userEvent, sf::Texture& cu
             pageFlag.addAnEventMenu = true;
             pageFlag.timelineMenu = false;
             pageFlag.homeMenu = false;
+        }
+        else if (pageFlag.addAnEventMenu == true && (userEvent.mouseButton.x >= 320 && userEvent.mouseButton.x <= 425) &&
+            (userEvent.mouseButton.y >= 700 && userEvent.mouseButton.y <= 750))
+        {
+            currentPageTexture.loadFromFile("Images and fonts/Timeline menu.png");
 
+            pageFlag.homeMenu = false;
+            pageFlag.addAnEventMenu = false;
+            pageFlag.timelineMenu = true;
         }
         break;
     }
