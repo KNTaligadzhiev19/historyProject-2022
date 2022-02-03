@@ -2,7 +2,7 @@
 #include <iostream>
 #include "../Header Files/startProgram.h"
 
-void switchPages(sf::RenderWindow& window, sf::Event& userEvent, sf::Texture& currentPageTexture, CURRENT_PAGE& pageFlag)
+void switchPages(sf::RenderWindow& window, sf::Event& userEvent, sf::Texture& currentPageTexture, CURRENT_PAGE& pageFlag, SELECTED_TEXT_BOX& textBoxFlag)
 {
     switch (userEvent.type)
     {
@@ -44,6 +44,33 @@ void switchPages(sf::RenderWindow& window, sf::Event& userEvent, sf::Texture& cu
             pageFlag.timelineMenu = false;
             pageFlag.homeMenu = false;
         }
+        else if (pageFlag.addAnEventMenu == true && (userEvent.mouseButton.x >= 195 && userEvent.mouseButton.x <= 500) &&
+            (userEvent.mouseButton.y >= 225 && userEvent.mouseButton.y <= 260))
+        {
+            textBoxFlag.titleTextBox = true;
+            textBoxFlag.dateTextBox = false;
+            textBoxFlag.descriptionTextBox = false;
+            textBoxProperties::titleBox.setPosition(210, 230);
+
+        }
+        else if (pageFlag.addAnEventMenu == true && (userEvent.mouseButton.x >= 195 && userEvent.mouseButton.x <= 400) &&
+            (userEvent.mouseButton.y >= 325 && userEvent.mouseButton.y <= 360))
+        {
+            textBoxFlag.titleTextBox = false;
+            textBoxFlag.dateTextBox = true;
+            textBoxFlag.descriptionTextBox = false;
+            textBoxProperties::dateBox.setPosition(210, 330);
+
+        }
+        else if (pageFlag.addAnEventMenu == true && (userEvent.mouseButton.x >= 195 && userEvent.mouseButton.x <= 475) &&
+            (userEvent.mouseButton.y >= 425 && userEvent.mouseButton.y <= 520))
+        {
+            textBoxFlag.titleTextBox = false;
+            textBoxFlag.dateTextBox = false;
+            textBoxFlag.descriptionTextBox = true;
+            textBoxProperties::descriptionBox.setPosition(210, 430);
+
+        }
         else if (pageFlag.addAnEventMenu == true && (userEvent.mouseButton.x >= 320 && userEvent.mouseButton.x <= 425) &&
             (userEvent.mouseButton.y >= 700 && userEvent.mouseButton.y <= 750))
         {
@@ -61,9 +88,43 @@ void switchPages(sf::RenderWindow& window, sf::Event& userEvent, sf::Texture& cu
     }
 }
 
+void selectTextBox(sf::RenderWindow& window, sf::Event& userEvent, SELECTED_TEXT_BOX& textBoxFlag)
+{
+    switch (userEvent.type)
+    {
+    case sf::Event::TextEntered:
+        if (userEvent.text.unicode < 128 && userEvent.text.unicode != 13 &&
+            userEvent.text.unicode != 8 && textBoxFlag.titleTextBox == true)
+        {
+            textBoxProperties::enteredTextForTitleBox += static_cast<char>(userEvent.text.unicode);
+            textBoxProperties::titleBox.setString(textBoxProperties::enteredTextForTitleBox);
+
+        }
+        else if (userEvent.text.unicode < 128 && userEvent.text.unicode != 13 &&
+            userEvent.text.unicode != 8 && textBoxFlag.dateTextBox == true)
+        {
+            textBoxProperties::enteredTextForDateBox += static_cast<char>(userEvent.text.unicode);
+            textBoxProperties::dateBox.setString(textBoxProperties::enteredTextForDateBox);
+
+        }
+        else if (userEvent.text.unicode < 128 && userEvent.text.unicode != 13 &&
+            userEvent.text.unicode != 8 && textBoxFlag.descriptionTextBox == true)
+        {
+            textBoxProperties::enteredTextForDescriptionBox += static_cast<char>(userEvent.text.unicode);
+            textBoxProperties::descriptionBox.setString(textBoxProperties::enteredTextForDescriptionBox);
+        }
+
+        break;
+    default:
+        break;
+    }
+}
+
 void startProgram()
 {
     CURRENT_PAGE pageFlag;
+    SELECTED_TEXT_BOX textBoxFlag;
+
     sf::RenderWindow window(sf::VideoMode(800, 900), "Historya", sf::Style::Close);
     window.setFramerateLimit(30);
 
@@ -73,17 +134,36 @@ void startProgram()
     sf::Sprite* currentPageSprite = new sf::Sprite;
     currentPageSprite->setTexture(*currentPageTexture);
 
+    sf::Font font;
+    font.loadFromFile("images and fonts/alkesregular.ttf");
+
+    textBoxProperties::titleBox.setFont(font);
+    textBoxProperties::dateBox.setFont(font);
+    textBoxProperties::descriptionBox.setFont(font);
+
+    textBoxProperties::titleBox.setCharacterSize(20);
+    textBoxProperties::dateBox.setCharacterSize(20);
+    textBoxProperties::descriptionBox.setCharacterSize(20);
+
+    textBoxProperties::titleBox.setFillColor(sf::Color::Black);
+    textBoxProperties::dateBox.setFillColor(sf::Color::Black);
+    textBoxProperties::descriptionBox.setFillColor(sf::Color::Black);
+
     while (window.isOpen())
     {
         sf::Event userEvent;
         while (window.pollEvent(userEvent))
         {
-            switchPages(window, userEvent, *currentPageTexture, pageFlag);
+            switchPages(window, userEvent, *currentPageTexture, pageFlag, textBoxFlag);
+            selectTextBox(window, userEvent, textBoxFlag);
         }
 
         window.clear();
 
         window.draw(*currentPageSprite);
+        window.draw(textBoxProperties::titleBox);
+        window.draw(textBoxProperties::dateBox);
+        window.draw(textBoxProperties::descriptionBox);
 
         window.display();
     }
