@@ -19,6 +19,14 @@ void switchPages(sf::RenderWindow& window, sf::Event& userEvent, sf::Texture& cu
             std::cout << "Enter timeline menu \n";
             currentPageTexture.loadFromFile("Images and fonts/Timeline menu.png");
         }
+
+        else if ((userEvent.mouseButton.x >= 20 && userEvent.mouseButton.x <= 172) &&
+            (userEvent.mouseButton.y >= 800 && userEvent.mouseButton.y <= 880))
+        {
+            std::cout << "Back to main menu \n";
+            currentPageTexture.loadFromFile("Images and fonts/Home-page.png");
+        }
+
         break;
     }
 
