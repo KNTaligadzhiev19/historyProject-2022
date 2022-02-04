@@ -19,7 +19,6 @@ namespace textBoxProperties
     static sf::Text titleBox;
     static sf::Text dateBox;
     static sf::Text descriptionBox;
-    static bool isDeleted = false;
 
     static std::string enteredTextForTitleBox = "";
     static std::string enteredTextForDateBox = "";

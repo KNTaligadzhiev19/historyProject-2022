@@ -1,6 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include "../Header Files/startProgram.h"
+#include "../../Back-End/Header Files/timelineMode.h"
 
 void switchPages(sf::RenderWindow& window, sf::Event& userEvent, sf::Texture& currentPageTexture, CURRENT_PAGE& pageFlag, SELECTED_TEXT_BOX& textBoxFlag)
 {
@@ -71,22 +72,44 @@ void switchPages(sf::RenderWindow& window, sf::Event& userEvent, sf::Texture& cu
             textBoxProperties::descriptionBox.setPosition(210, 430);
 
         }
-        else if (pageFlag.addAnEventMenu == true && (userEvent.mouseButton.x >= 320 && userEvent.mouseButton.x <= 425) &&
+        else if (pageFlag.addAnEventMenu == true && (userEvent.mouseButton.x >= 195 && userEvent.mouseButton.x <= 300) &&
             (userEvent.mouseButton.y >= 700 && userEvent.mouseButton.y <= 750))
         {
+            setDataToNodes(*firstAndLastNodes::Head, textBoxProperties::enteredTextForTitleBox, textBoxProperties::enteredTextForDateBox,
+                textBoxProperties::enteredTextForDescriptionBox);
+
+            textBoxProperties::enteredTextForTitleBox = "";
+            textBoxProperties::enteredTextForDateBox = "";
+            textBoxProperties::enteredTextForDescriptionBox = "";
+
+            textBoxProperties::titleBox.setString(textBoxProperties::enteredTextForTitleBox);
+            textBoxProperties::dateBox.setString(textBoxProperties::enteredTextForDateBox);
+            textBoxProperties::descriptionBox.setString(textBoxProperties::enteredTextForDescriptionBox);
+
             currentPageTexture.loadFromFile("Images and fonts/Timeline menu.png");
 
             pageFlag.homeMenu = false;
             pageFlag.addAnEventMenu = false;
             pageFlag.timelineMenu = true;
 
-            /*textBoxProperties::enteredTextForTitleBox = "";
+        }
+        else if (pageFlag.addAnEventMenu == true && (userEvent.mouseButton.x >= 320 && userEvent.mouseButton.x <= 425) &&
+            (userEvent.mouseButton.y >= 700 && userEvent.mouseButton.y <= 750))
+        {
+            textBoxProperties::enteredTextForTitleBox = "";
             textBoxProperties::enteredTextForDateBox = "";
             textBoxProperties::enteredTextForDescriptionBox = "";
 
             textBoxProperties::titleBox.setString(textBoxProperties::enteredTextForTitleBox);
             textBoxProperties::dateBox.setString(textBoxProperties::enteredTextForDateBox);
-            textBoxProperties::descriptionBox.setString(textBoxProperties::enteredTextForDescriptionBox);*/
+            textBoxProperties::descriptionBox.setString(textBoxProperties::enteredTextForDescriptionBox);
+
+            currentPageTexture.loadFromFile("Images and fonts/Timeline menu.png");
+
+            pageFlag.homeMenu = false;
+            pageFlag.addAnEventMenu = false;
+            pageFlag.timelineMenu = true;
+
         }
         break;
     }
