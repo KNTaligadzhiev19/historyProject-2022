@@ -79,6 +79,14 @@ void switchPages(sf::RenderWindow& window, sf::Event& userEvent, sf::Texture& cu
             pageFlag.homeMenu = false;
             pageFlag.addAnEventMenu = false;
             pageFlag.timelineMenu = true;
+
+            /*textBoxProperties::enteredTextForTitleBox = "";
+            textBoxProperties::enteredTextForDateBox = "";
+            textBoxProperties::enteredTextForDescriptionBox = "";
+
+            textBoxProperties::titleBox.setString(textBoxProperties::enteredTextForTitleBox);
+            textBoxProperties::dateBox.setString(textBoxProperties::enteredTextForDateBox);
+            textBoxProperties::descriptionBox.setString(textBoxProperties::enteredTextForDescriptionBox);*/
         }
         break;
     }
