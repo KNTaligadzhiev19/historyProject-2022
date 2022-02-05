@@ -1,9 +1,12 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
-#include "Front-End/Header Files/startProgram.h"
-
+#include "Front-End/header Files/startProgram.h"
+#include "Back-End/Header Files/timelineMode.h"
 
 int main()
 {
-	startProgram();
+	NODE* head = new NODE;
+	head->next = NULL;
+
+	startProgram(head);
 }

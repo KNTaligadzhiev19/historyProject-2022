@@ -10,10 +10,6 @@ struct NODE
 	NODE* next = NULL;
 };
 
-namespace firstAndLastNodes
-{
-	static NODE* Head = new NODE;
-	static NODE* Tail = new NODE;
-};
+void setDataToNodes(NODE& head, std::string& title, std::string& date, std::string& description);
 
-void setDataToNodes(NODE& Head, std::string& title, std::string& date, std::string& description);
+//void newElement(NODE* head, std::string& title, std::string& date, std::string& description);

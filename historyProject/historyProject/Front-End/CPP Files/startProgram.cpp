@@ -1,9 +1,10 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
-#include "../Header Files/startProgram.h"
-#include "../../Back-End/Header Files/timelineMode.h"
+#include "../header Files/startProgram.h"
+#include "../../Back-End/header Files/timelineMode.h"
 
-void switchPages(sf::RenderWindow& window, sf::Event& userEvent, sf::Texture& currentPageTexture, CURRENT_PAGE& pageFlag, SELECTED_TEXT_BOX& textBoxFlag)
+void switchPages(sf::RenderWindow& window, sf::Event& userEvent, sf::Texture& currentPageTexture, CURRENT_PAGE& pageFlag,
+    SELECTED_TEXT_BOX& textBoxFlag, NODE* head)
 {
     switch (userEvent.type)
     {
@@ -75,8 +76,8 @@ void switchPages(sf::RenderWindow& window, sf::Event& userEvent, sf::Texture& cu
         else if (pageFlag.addAnEventMenu == true && (userEvent.mouseButton.x >= 195 && userEvent.mouseButton.x <= 300) &&
             (userEvent.mouseButton.y >= 700 && userEvent.mouseButton.y <= 750))
         {
-            setDataToNodes(*firstAndLastNodes::Head, textBoxProperties::enteredTextForTitleBox, textBoxProperties::enteredTextForDateBox,
-                textBoxProperties::enteredTextForDescriptionBox);
+            /*setDataToNodes(*head, textBoxProperties::enteredTextForTitleBox, textBoxProperties::enteredTextForDateBox,
+                textBoxProperties::enteredTextForDescriptionBox);*/
 
             textBoxProperties::enteredTextForTitleBox = "";
             textBoxProperties::enteredTextForDateBox = "";
@@ -119,30 +120,61 @@ void switchPages(sf::RenderWindow& window, sf::Event& userEvent, sf::Texture& cu
     }
 }
 
+std::string deleteCharFromText(std::string enteredText)
+{
+    std::string processedText;
+
+    for (size_t i = 0; i < enteredText.size() - 1; i++)
+    {
+        processedText += enteredText[i];
+    }
+
+    return processedText;
+}
+
 void selectTextBox(sf::RenderWindow& window, sf::Event& userEvent, SELECTED_TEXT_BOX& textBoxFlag)
 {
     switch (userEvent.type)
     {
     case sf::Event::TextEntered:
-        if (userEvent.text.unicode < 128 && userEvent.text.unicode != 13 &&
-            userEvent.text.unicode != 8 && textBoxFlag.titleTextBox == true)
+        if (userEvent.text.unicode < 128 && textBoxFlag.titleTextBox == true)
         {
-            textBoxProperties::enteredTextForTitleBox += static_cast<char>(userEvent.text.unicode);
-            textBoxProperties::titleBox.setString(textBoxProperties::enteredTextForTitleBox);
-
+            if (userEvent.text.unicode != 13 && userEvent.text.unicode != 8)
+            {
+                textBoxProperties::enteredTextForTitleBox += static_cast<char>(userEvent.text.unicode);
+                textBoxProperties::titleBox.setString(textBoxProperties::enteredTextForTitleBox);
+            }
+            else if (userEvent.text.unicode == 8 && textBoxProperties::enteredTextForTitleBox.size() > 0)
+            {
+                textBoxProperties::enteredTextForTitleBox = deleteCharFromText(textBoxProperties::enteredTextForTitleBox);
+                textBoxProperties::titleBox.setString(textBoxProperties::enteredTextForTitleBox);
+            }
         }
-        else if (userEvent.text.unicode < 128 && userEvent.text.unicode != 13 &&
-            userEvent.text.unicode != 8 && textBoxFlag.dateTextBox == true)
+        else if (userEvent.text.unicode < 128 && textBoxFlag.dateTextBox == true)
         {
-            textBoxProperties::enteredTextForDateBox += static_cast<char>(userEvent.text.unicode);
-            textBoxProperties::dateBox.setString(textBoxProperties::enteredTextForDateBox);
-
+            if (userEvent.text.unicode != 13 && userEvent.text.unicode != 8)
+            {
+                textBoxProperties::enteredTextForDateBox += static_cast<char>(userEvent.text.unicode);
+                textBoxProperties::dateBox.setString(textBoxProperties::enteredTextForDateBox);
+            }
+            else if (userEvent.text.unicode == 8 && textBoxProperties::enteredTextForDateBox.size() > 0)
+            {
+                textBoxProperties::enteredTextForDateBox = deleteCharFromText(textBoxProperties::enteredTextForDateBox);
+                textBoxProperties::dateBox.setString(textBoxProperties::enteredTextForDateBox);
+            }
         }
-        else if (userEvent.text.unicode < 128 && userEvent.text.unicode != 13 &&
-            userEvent.text.unicode != 8 && textBoxFlag.descriptionTextBox == true)
+        else if (userEvent.text.unicode < 128 && textBoxFlag.descriptionTextBox == true)
         {
-            textBoxProperties::enteredTextForDescriptionBox += static_cast<char>(userEvent.text.unicode);
-            textBoxProperties::descriptionBox.setString(textBoxProperties::enteredTextForDescriptionBox);
+            if (userEvent.text.unicode != 13 && userEvent.text.unicode != 8)
+            {
+                textBoxProperties::enteredTextForDescriptionBox += static_cast<char>(userEvent.text.unicode);
+                textBoxProperties::descriptionBox.setString(textBoxProperties::enteredTextForDescriptionBox);
+            }
+            else if (userEvent.text.unicode == 8 && textBoxProperties::enteredTextForDescriptionBox.size() > 0)
+            {
+                textBoxProperties::enteredTextForDescriptionBox = deleteCharFromText(textBoxProperties::enteredTextForDescriptionBox);
+                textBoxProperties::descriptionBox.setString(textBoxProperties::enteredTextForDescriptionBox);
+            }
         }
 
         break;
@@ -151,7 +183,7 @@ void selectTextBox(sf::RenderWindow& window, sf::Event& userEvent, SELECTED_TEXT
     }
 }
 
-void startProgram()
+void startProgram(NODE* head)
 {
     CURRENT_PAGE pageFlag;
     SELECTED_TEXT_BOX textBoxFlag;
@@ -185,7 +217,7 @@ void startProgram()
         sf::Event userEvent;
         while (window.pollEvent(userEvent))
         {
-            switchPages(window, userEvent, *currentPageTexture, pageFlag, textBoxFlag);
+            switchPages(window, userEvent, *currentPageTexture, pageFlag, textBoxFlag, head);
             selectTextBox(window, userEvent, textBoxFlag);
         }
 

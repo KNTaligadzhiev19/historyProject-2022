@@ -1,4 +1,5 @@
 #pragma once
+#include "../../Back-End/Header Files/timelineMode.h"
 
 struct CURRENT_PAGE
 {
@@ -25,4 +26,4 @@ namespace textBoxProperties
     static std::string enteredTextForDescriptionBox = "";
 }
 
-void startProgram();
+void startProgram(NODE* head);
