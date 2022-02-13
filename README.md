@@ -28,3 +28,14 @@
 
 > 5. **PZSpasov19** - **Q&A engineer**		
    - ***GitHub profile***: [***PZSpasov19***](https://github.com/PZSpasov19)
+
+ ## 💻 Technologies	<a name = "technologies"></a>
+> The technologies we used for our project are Microsoft Teams for communication, Git and GitHub for code storage and teamwork on the code, Visual Studio for the code editor, Microsoft PowerPoint for preparing a presentation, Microsoft Word for preparing documentation.	
+
+## ⌨ Installation	<a name = "installation"></a>
+
+Paste this in cmd:	
+
+````	
+git clone https://github.com/KNTaligadzhiev19/historyProject-2022	
+````
