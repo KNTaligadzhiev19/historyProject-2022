@@ -11,3 +11,6 @@
 + [Technologies](#technologies)
 + [Installation](#installation)
 + [Function List](#function-list)
+
+## 🤷‍♂️ About	<a name = "about"></a>
+> Our project is an application that can be used for education and practice on historical events and their dates.
