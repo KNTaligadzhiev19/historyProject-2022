@@ -36,12 +36,33 @@
     <ClCompile Include="Front-End\CPP Files\startProgram.cpp">
       <Filter>Source Files\Front-End</Filter>
     </ClCompile>
+    <ClCompile Include="Front-End\CPP Files\homePage.cpp">
+      <Filter>Source Files\Front-End</Filter>
+    </ClCompile>
+    <ClCompile Include="Front-End\CPP Files\loginPage.cpp">
+      <Filter>Source Files\Front-End</Filter>
+    </ClCompile>
+    <ClCompile Include="Front-End\CPP Files\textProperties.cpp">
+      <Filter>Source Files\Front-End</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Front-End\Header Files\startProgram.h">
+      <Filter>Header Files\Front-End</Filter>
+    </ClInclude>
     <ClInclude Include="Back-End\Header Files\timelineMode.h">
       <Filter>Header Files\Back-End</Filter>
     </ClInclude>
-    <ClInclude Include="Front-End\Header Files\startProgram.h">
+    <ClInclude Include="Front-End\Header Files\homePage.h">
+      <Filter>Header Files\Front-End</Filter>
+    </ClInclude>
+    <ClInclude Include="Front-End\Header Files\pagePropertiesContainer.h">
+      <Filter>Header Files\Front-End</Filter>
+    </ClInclude>
+    <ClInclude Include="Front-End\Header Files\loginForm.h">
+      <Filter>Header Files\Front-End</Filter>
+    </ClInclude>
+    <ClInclude Include="Front-End\Header Files\textProperties.h">
       <Filter>Header Files\Front-End</Filter>
     </ClInclude>
   </ItemGroup>
