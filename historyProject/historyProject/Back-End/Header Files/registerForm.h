@@ -3,4 +3,4 @@
 #include <iostream>
 #include <fstream>
 
-void registerUser(std::string username, std::string password);
+void registerUser(std::string username, std::string password, std::fstream& userInfo);

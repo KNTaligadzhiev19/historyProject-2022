@@ -1,8 +1,9 @@
 #include "../header Files/startProgram.h"
 #include "../../Back-End/header Files/registerForm.h"
+#include "../../Back-End/header Files/loginForm.h"
 
 void switchPages(sf::RenderWindow& window, sf::Event& userEvent, sf::Texture& currentPageTexture, CURRENT_PAGE& pageFlag,
-    SELECTED_TEXT_BOX& textBoxFlag, NODE* head)
+    SELECTED_TEXT_BOX& textBoxFlag, NODE* head, std::fstream& userInfo)
 {
     switch (userEvent.type)
     {
@@ -31,6 +32,29 @@ void switchPages(sf::RenderWindow& window, sf::Event& userEvent, sf::Texture& cu
             textBoxProperties::enteredTextForPasswordBox = "";
             textBoxProperties::username.setString(textBoxProperties::enteredTextForUsernameBox);
             textBoxProperties::password.setString(textBoxProperties::enteredTextForPasswordBox);
+
+            break;
+        }
+        if ((userEvent.mouseButton.x >= 75 && userEvent.mouseButton.x <= 200) &&
+            (userEvent.mouseButton.y >= 600 && userEvent.mouseButton.y <= 665) && pageFlag.loginPage == true)
+        {
+            if (findUser(textBoxProperties::enteredTextForUsernameBox, textBoxProperties::enteredTextForPasswordBox, userInfo))
+            {
+                std::cout << "Enter home page \n";
+                currentPageTexture.loadFromFile("Images and fonts/Home-page.png");
+                pageFlag.loginPage = false;
+                pageFlag.registerPage = false;
+                pageFlag.homeMenu = true;
+                pageFlag.timelineMenu = false;
+                pageFlag.addAnEventMenu = false;
+            }
+
+            textBoxProperties::enteredTextForUsernameBox = "";
+            textBoxProperties::enteredTextForPasswordBox = "";
+            textBoxProperties::username.setString(textBoxProperties::enteredTextForUsernameBox);
+            textBoxProperties::password.setString(textBoxProperties::enteredTextForPasswordBox);
+
+            break;
         }
         else if ((userEvent.mouseButton.x >= 360 && userEvent.mouseButton.x <= 480) &&
             (userEvent.mouseButton.y >= 600 && userEvent.mouseButton.y <= 665) && pageFlag.registerPage == true)
@@ -47,12 +71,14 @@ void switchPages(sf::RenderWindow& window, sf::Event& userEvent, sf::Texture& cu
             textBoxProperties::enteredTextForPasswordBox = "";
             textBoxProperties::username.setString(textBoxProperties::enteredTextForUsernameBox);
             textBoxProperties::password.setString(textBoxProperties::enteredTextForPasswordBox);
+
+            break;
         }
         else if ((userEvent.mouseButton.x >= 75 && userEvent.mouseButton.x <= 230) &&
             (userEvent.mouseButton.y >= 600 && userEvent.mouseButton.y <= 670) && pageFlag.registerPage == true)
         {
             std::cout << "Register user\n";
-            registerUser(textBoxProperties::enteredTextForUsernameBox, textBoxProperties::enteredTextForPasswordBox);
+            registerUser(textBoxProperties::enteredTextForUsernameBox, textBoxProperties::enteredTextForPasswordBox, userInfo);
             currentPageTexture.loadFromFile("Images and fonts/Login-form.png");
             pageFlag.loginPage = true;
             pageFlag.registerPage = false;
@@ -64,6 +90,8 @@ void switchPages(sf::RenderWindow& window, sf::Event& userEvent, sf::Texture& cu
             textBoxProperties::enteredTextForPasswordBox = "";
             textBoxProperties::username.setString(textBoxProperties::enteredTextForUsernameBox);
             textBoxProperties::password.setString(textBoxProperties::enteredTextForPasswordBox);
+
+            break;
         }
         else if ((userEvent.mouseButton.x >= 170 && userEvent.mouseButton.x <= 625) &&
             (userEvent.mouseButton.y >= 400 && userEvent.mouseButton.y <= 510) && pageFlag.homeMenu == true)
@@ -194,6 +222,8 @@ void switchPages(sf::RenderWindow& window, sf::Event& userEvent, sf::Texture& cu
             pageFlag.homeMenu = false;
             pageFlag.addAnEventMenu = false;
             pageFlag.timelineMenu = true;
+
+            break;
         }
         else if (pageFlag.addAnEventMenu == true && (userEvent.mouseButton.x >= 225 && userEvent.mouseButton.x <= 340) &&
             (userEvent.mouseButton.y >= 760 && userEvent.mouseButton.y <= 815))
@@ -213,6 +243,8 @@ void switchPages(sf::RenderWindow& window, sf::Event& userEvent, sf::Texture& cu
             pageFlag.homeMenu = false;
             pageFlag.addAnEventMenu = false;
             pageFlag.timelineMenu = true;
+
+            break;
         }
         break;
     }
@@ -315,6 +347,7 @@ void startProgram(NODE* head)
 {
     CURRENT_PAGE pageFlag;
     SELECTED_TEXT_BOX textBoxFlag;
+    std::fstream userInfo;
 
     sf::RenderWindow window(sf::VideoMode(800, 900), "Historya", sf::Style::Close);
     window.setFramerateLimit(30);
@@ -351,7 +384,7 @@ void startProgram(NODE* head)
         sf::Event userEvent;
         while (window.pollEvent(userEvent))
         {
-            switchPages(window, userEvent, *currentPageTexture, pageFlag, textBoxFlag, head);
+            switchPages(window, userEvent, *currentPageTexture, pageFlag, textBoxFlag, head, userInfo);
             selectTextBox(window, userEvent, textBoxFlag);
         }
 

@@ -39,6 +39,9 @@
     <ClCompile Include="Back-End\CPP Files\registerForm.cpp">
       <Filter>Source Files\Back-End</Filter>
     </ClCompile>
+    <ClCompile Include="Back-End\CPP Files\loginFrom.cpp">
+      <Filter>Source Files\Back-End</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Back-End\Header Files\timelineMode.h">
@@ -48,6 +51,9 @@
       <Filter>Header Files\Front-End</Filter>
     </ClInclude>
     <ClInclude Include="Back-End\Header Files\registerForm.h">
+      <Filter>Header Files\Back-End</Filter>
+    </ClInclude>
+    <ClInclude Include="Back-End\Header Files\loginForm.h">
       <Filter>Header Files\Back-End</Filter>
     </ClInclude>
   </ItemGroup>
