@@ -37,5 +37,4 @@ Paste this in cmd:
 git clone https://github.com/KNTaligadzhiev19/historyProject-2022	
 ````
 
-## 📃Function list <a name = "function-list"></a>
 
