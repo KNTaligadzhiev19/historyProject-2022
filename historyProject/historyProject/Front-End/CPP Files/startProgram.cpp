@@ -3,7 +3,7 @@
 #include "../../Back-End/header Files/loginForm.h"
 
 void switchPages(sf::RenderWindow& window, sf::Event& userEvent, sf::Texture& currentPageTexture, CURRENT_PAGE& pageFlag,
-    SELECTED_TEXT_BOX& textBoxFlag, NODE* head, std::fstream& userInfo)
+    SELECTED_TEXT_BOX& textBoxFlag, NODE* head, std::fstream& userInfo, std::fstream& eventInfo)
 {
     switch (userEvent.type)
     {
@@ -204,8 +204,8 @@ void switchPages(sf::RenderWindow& window, sf::Event& userEvent, sf::Texture& cu
         else if (pageFlag.addAnEventMenu == true && (userEvent.mouseButton.x >= 120 && userEvent.mouseButton.x <= 800) &&
             (userEvent.mouseButton.y >= 760 && userEvent.mouseButton.y <= 815))
         {
-            setDataToNodes(*head, textBoxProperties::enteredTextForTitleBox, textBoxProperties::enteredTextForDateBox,
-                textBoxProperties::enteredTextForDescriptionBox);
+            setDataToNodes(head, textBoxProperties::enteredTextForTitleBox, textBoxProperties::enteredTextForDateBox,
+                textBoxProperties::enteredTextForDescriptionBox, eventInfo);
 
             textBoxProperties::enteredTextForTitleBox = "";
             textBoxProperties::enteredTextForDateBox = "";
@@ -254,18 +254,6 @@ void switchPages(sf::RenderWindow& window, sf::Event& userEvent, sf::Texture& cu
     }
 }
 
-std::string deleteCharFromText(std::string enteredText)
-{
-    std::string processedText;
-
-    for (size_t i = 0; i < enteredText.size() - 1; i++)
-    {
-        processedText += enteredText[i];
-    }
-
-    return processedText;
-}
-
 void selectTextBox(sf::RenderWindow& window, sf::Event& userEvent, SELECTED_TEXT_BOX& textBoxFlag)
 {
     switch (userEvent.type)
@@ -280,7 +268,7 @@ void selectTextBox(sf::RenderWindow& window, sf::Event& userEvent, SELECTED_TEXT
             }
             else if (userEvent.text.unicode == 8 && textBoxProperties::enteredTextForTitleBox.size() > 0)
             {
-                textBoxProperties::enteredTextForTitleBox = deleteCharFromText(textBoxProperties::enteredTextForTitleBox);
+                textBoxProperties::enteredTextForTitleBox.pop_back();
                 textBoxProperties::titleBox.setString(textBoxProperties::enteredTextForTitleBox);
             }
         }
@@ -293,7 +281,7 @@ void selectTextBox(sf::RenderWindow& window, sf::Event& userEvent, SELECTED_TEXT
             }
             else if (userEvent.text.unicode == 8 && textBoxProperties::enteredTextForDateBox.size() > 0)
             {
-                textBoxProperties::enteredTextForDateBox = deleteCharFromText(textBoxProperties::enteredTextForDateBox);
+                textBoxProperties::enteredTextForDateBox.pop_back();
                 textBoxProperties::dateBox.setString(textBoxProperties::enteredTextForDateBox);
             }
         }
@@ -306,7 +294,7 @@ void selectTextBox(sf::RenderWindow& window, sf::Event& userEvent, SELECTED_TEXT
             }
             else if (userEvent.text.unicode == 8 && textBoxProperties::enteredTextForDescriptionBox.size() > 0)
             {
-                textBoxProperties::enteredTextForDescriptionBox = deleteCharFromText(textBoxProperties::enteredTextForDescriptionBox);
+                textBoxProperties::enteredTextForDescriptionBox.pop_back();
                 textBoxProperties::descriptionBox.setString(textBoxProperties::enteredTextForDescriptionBox);
             }
         }
@@ -319,7 +307,7 @@ void selectTextBox(sf::RenderWindow& window, sf::Event& userEvent, SELECTED_TEXT
             }
             else if (userEvent.text.unicode == 8 && textBoxProperties::enteredTextForUsernameBox.size() > 0)
             {
-                textBoxProperties::enteredTextForUsernameBox = deleteCharFromText(textBoxProperties::enteredTextForUsernameBox);
+                textBoxProperties::enteredTextForUsernameBox.pop_back();
                 textBoxProperties::username.setString(textBoxProperties::enteredTextForUsernameBox);
             }
         }
@@ -332,7 +320,7 @@ void selectTextBox(sf::RenderWindow& window, sf::Event& userEvent, SELECTED_TEXT
             }
             else if (userEvent.text.unicode == 8 && textBoxProperties::enteredTextForPasswordBox.size() > 0)
             {
-                textBoxProperties::enteredTextForPasswordBox = deleteCharFromText(textBoxProperties::enteredTextForPasswordBox);
+                textBoxProperties::enteredTextForPasswordBox.pop_back();
                 textBoxProperties::password.setString(textBoxProperties::enteredTextForPasswordBox);
             }
         }
@@ -348,6 +336,7 @@ void startProgram(NODE* head)
     CURRENT_PAGE pageFlag;
     SELECTED_TEXT_BOX textBoxFlag;
     std::fstream userInfo;
+    std::fstream eventInfo;
 
     sf::RenderWindow window(sf::VideoMode(800, 900), "Historya", sf::Style::Close);
     window.setFramerateLimit(30);
@@ -384,7 +373,7 @@ void startProgram(NODE* head)
         sf::Event userEvent;
         while (window.pollEvent(userEvent))
         {
-            switchPages(window, userEvent, *currentPageTexture, pageFlag, textBoxFlag, head, userInfo);
+            switchPages(window, userEvent, *currentPageTexture, pageFlag, textBoxFlag, head, userInfo, eventInfo);
             selectTextBox(window, userEvent, textBoxFlag);
         }
 

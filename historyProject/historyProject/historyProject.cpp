@@ -5,8 +5,7 @@
 
 int main()
 {
-	NODE* head = new NODE;
-	head->next = NULL;
+	NODE* head = new NODE();
 
 	startProgram(head);
 }
