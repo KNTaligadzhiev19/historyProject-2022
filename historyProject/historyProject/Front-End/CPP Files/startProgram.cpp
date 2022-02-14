@@ -28,6 +28,11 @@ void switchPages(sf::RenderWindow& window, sf::Event& userEvent, sf::Texture& cu
             pageFlag.homeMenu = false;
             pageFlag.timelineMenu = false;
             pageFlag.addAnEventMenu = false;
+
+            textBoxProperties::enteredTextForUsernameBox = "";
+            textBoxProperties::enteredTextForPasswordBox = "";
+            textBoxProperties::username.setString(textBoxProperties::enteredTextForUsernameBox);
+            textBoxProperties::password.setString(textBoxProperties::enteredTextForPasswordBox);
         }
         else if ((userEvent.mouseButton.x >= 360 && userEvent.mouseButton.x <= 480) &&
             (userEvent.mouseButton.y >= 600 && userEvent.mouseButton.y <= 665) && pageFlag.registerPage == true)
@@ -39,6 +44,11 @@ void switchPages(sf::RenderWindow& window, sf::Event& userEvent, sf::Texture& cu
             pageFlag.homeMenu = false;
             pageFlag.timelineMenu = false;
             pageFlag.addAnEventMenu = false;
+
+            textBoxProperties::enteredTextForUsernameBox = "";
+            textBoxProperties::enteredTextForPasswordBox = "";
+            textBoxProperties::username.setString(textBoxProperties::enteredTextForUsernameBox);
+            textBoxProperties::password.setString(textBoxProperties::enteredTextForPasswordBox);
         }
         else if ((userEvent.mouseButton.x >= 170 && userEvent.mouseButton.x <= 625) &&
             (userEvent.mouseButton.y >= 400 && userEvent.mouseButton.y <= 510) && pageFlag.homeMenu == true)
@@ -120,6 +130,26 @@ void switchPages(sf::RenderWindow& window, sf::Event& userEvent, sf::Texture& cu
         }
         else if (pageFlag.loginPage == true && (userEvent.mouseButton.x >= 75 && userEvent.mouseButton.x <= 720) &&
             (userEvent.mouseButton.y >= 515 && userEvent.mouseButton.y <= 580))
+        {
+            textBoxFlag.titleTextBox = false;
+            textBoxFlag.dateTextBox = false;
+            textBoxFlag.descriptionTextBox = false;
+            textBoxFlag.username = false;
+            textBoxFlag.password = true;
+            textBoxProperties::password.setPosition(140, 525);
+        }
+        else if (pageFlag.registerPage == true && (userEvent.mouseButton.x >= 75 && userEvent.mouseButton.x <= 720) &&
+            (userEvent.mouseButton.y >= 380 && userEvent.mouseButton.y <= 440))
+        {
+            textBoxFlag.titleTextBox = false;
+            textBoxFlag.dateTextBox = false;
+            textBoxFlag.descriptionTextBox = false;
+            textBoxFlag.username = true;
+            textBoxFlag.password = false;
+            textBoxProperties::username.setPosition(140, 390);
+        }
+        else if (pageFlag.registerPage == true && (userEvent.mouseButton.x >= 75 && userEvent.mouseButton.x <= 720) &&
+            (userEvent.mouseButton.y >= 520 && userEvent.mouseButton.y <= 580))
         {
             textBoxFlag.titleTextBox = false;
             textBoxFlag.dateTextBox = false;
