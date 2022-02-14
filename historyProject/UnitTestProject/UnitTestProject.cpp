@@ -29,5 +29,15 @@ namespace UnitTestProject
 
 			Assert::IsFalse(flag);
 		}
+
+		TEST_METHOD(checkLoginFormWithIncorrectPassword)
+		{
+			std::string enteredUsername = "admin", enteredPassword = "password";
+			std::fstream userInfo;
+
+			bool flag = findUser(enteredUsername, enteredPassword, userInfo);
+
+			Assert::IsFalse(flag);
+		}
 	};
 }
