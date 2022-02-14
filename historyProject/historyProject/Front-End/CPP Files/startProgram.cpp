@@ -1,7 +1,5 @@
-#include <SFML/Graphics.hpp>
-#include <iostream>
 #include "../header Files/startProgram.h"
-#include "../../Back-End/header Files/timelineMode.h"
+#include "../../Back-End/header Files/registerForm.h"
 
 void switchPages(sf::RenderWindow& window, sf::Event& userEvent, sf::Texture& currentPageTexture, CURRENT_PAGE& pageFlag,
     SELECTED_TEXT_BOX& textBoxFlag, NODE* head)
@@ -37,7 +35,24 @@ void switchPages(sf::RenderWindow& window, sf::Event& userEvent, sf::Texture& cu
         else if ((userEvent.mouseButton.x >= 360 && userEvent.mouseButton.x <= 480) &&
             (userEvent.mouseButton.y >= 600 && userEvent.mouseButton.y <= 665) && pageFlag.registerPage == true)
         {
-            std::cout << "Enter register form \n";
+            std::cout << "Enter login form \n";
+            currentPageTexture.loadFromFile("Images and fonts/Login-form.png");
+            pageFlag.loginPage = true;
+            pageFlag.registerPage = false;
+            pageFlag.homeMenu = false;
+            pageFlag.timelineMenu = false;
+            pageFlag.addAnEventMenu = false;
+
+            textBoxProperties::enteredTextForUsernameBox = "";
+            textBoxProperties::enteredTextForPasswordBox = "";
+            textBoxProperties::username.setString(textBoxProperties::enteredTextForUsernameBox);
+            textBoxProperties::password.setString(textBoxProperties::enteredTextForPasswordBox);
+        }
+        else if ((userEvent.mouseButton.x >= 75 && userEvent.mouseButton.x <= 230) &&
+            (userEvent.mouseButton.y >= 600 && userEvent.mouseButton.y <= 670) && pageFlag.registerPage == true)
+        {
+            std::cout << "Register user\n";
+            registerUser(textBoxProperties::enteredTextForUsernameBox, textBoxProperties::enteredTextForPasswordBox);
             currentPageTexture.loadFromFile("Images and fonts/Login-form.png");
             pageFlag.loginPage = true;
             pageFlag.registerPage = false;

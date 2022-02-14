@@ -1,4 +1,6 @@
 #pragma once
+#include <SFML/Graphics.hpp>
+#include <iostream>
 #include "../../Back-End/Header Files/timelineMode.h"
 
 struct CURRENT_PAGE

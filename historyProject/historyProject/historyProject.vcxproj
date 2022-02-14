@@ -143,11 +143,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Back-End\CPP Files\registerForm.cpp" />
     <ClCompile Include="Back-End\CPP Files\timelineMode.cpp" />
     <ClCompile Include="Front-End\CPP Files\startProgram.cpp" />
     <ClCompile Include="historyProject.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Back-End\Header Files\registerForm.h" />
     <ClInclude Include="Back-End\Header Files\timelineMode.h" />
     <ClInclude Include="Front-End\Header Files\startProgram.h" />
   </ItemGroup>
