@@ -1,297 +1,281 @@
-#include "../Header Files/loginForm.h"
+#include <SFML/Graphics.hpp>
 #include <iostream>
-//#include "../header Files/startProgram.h"
-//#include "../../Back-End/header Files/timelineMode.h"
+#include "../header Files/startProgram.h"
+#include "../../Back-End/header Files/timelineMode.h"
 
-//void switchPages(sf::RenderWindow& window, sf::Event& userEvent, sf::Texture& currentPageTexture, CURRENT_PAGE& pageFlag,
-//    SELECTED_TEXT_BOX& textBoxFlag, NODE* head)
-//{
-//    switch (userEvent.type)
-//    {
-//    case sf::Event::Closed:
-//    {
-//        window.close();
-//        break;
-//    }
-//
-//    case sf::Event::MouseButtonPressed:
-//    {
-//        if ((userEvent.mouseButton.x >= 170 && userEvent.mouseButton.x <= 625) &&
-//            (userEvent.mouseButton.y >= 400 && userEvent.mouseButton.y <= 510) && pageFlag.homeMenu == true)
-//        {
-//            std::cout << "Enter timeline menu \n";
-//            currentPageTexture.loadFromFile("Images and fonts/Timeline menu.png");
-//            pageFlag.homeMenu = false;
-//            pageFlag.timelineMenu = true;
-//            pageFlag.addAnEventMenu = false;
-//            pageFlag.displayAllEvents = false;
-//        }
-//        else if ((userEvent.mouseButton.x >= 20 && userEvent.mouseButton.x <= 172) &&
-//            (userEvent.mouseButton.y >= 800 && userEvent.mouseButton.y <= 880) && pageFlag.timelineMenu == true)
-//        {
-//            std::cout << "Back to main menu \n";
-//            currentPageTexture.loadFromFile("Images and fonts/Home-page.png");
-//            pageFlag.homeMenu = true;
-//            pageFlag.timelineMenu = false;
-//            pageFlag.addAnEventMenu = false;
-//            pageFlag.displayAllEvents = false;
-//        }
-//        else if ((userEvent.mouseButton.x >= 170 && userEvent.mouseButton.x <= 625) &&
-//            (userEvent.mouseButton.y >= 340 && userEvent.mouseButton.y <= 450) &&
-//            pageFlag.timelineMenu == true)
-//        {
-//            std::cout << "Enter add an event option \n";
-//
-//            currentPageTexture.loadFromFile("Images and fonts/Add an event form.png");
-//
-//            pageFlag.addAnEventMenu = true;
-//            pageFlag.timelineMenu = false;
-//            pageFlag.homeMenu = false;
-//            pageFlag.displayAllEvents = false;
-//        }
-//        else if (pageFlag.addAnEventMenu == true && (userEvent.mouseButton.x >= 95 && userEvent.mouseButton.x <= 700) &&
-//            (userEvent.mouseButton.y >= 235 && userEvent.mouseButton.y <= 300))
-//        {
-//            textBoxFlag.titleTextBox = true;
-//            textBoxFlag.dateDayBox = false;
-//            textBoxFlag.dateMonthBox = false;
-//            textBoxFlag.dateYearBox = false;
-//            textBoxFlag.descriptionTextBox = false;
-//            textBoxProperties::titleBox.setPosition(145, 245);
-//        }
-//        else if (pageFlag.addAnEventMenu == true && (userEvent.mouseButton.x >= 95 && userEvent.mouseButton.x <= 250) &&
-//            (userEvent.mouseButton.y >= 385 && userEvent.mouseButton.y <= 445))
-//        {
-//            textBoxFlag.titleTextBox = false;
-//            textBoxFlag.dateDayBox = true;
-//            textBoxFlag.dateMonthBox = false;
-//            textBoxFlag.dateYearBox = false;
-//            textBoxFlag.descriptionTextBox = false;
-//            textBoxProperties::dateDayBox.setPosition(150, 395);
-//        }
-//        else if (pageFlag.addAnEventMenu == true && (userEvent.mouseButton.x >= 280 && userEvent.mouseButton.x <= 345) &&
-//            (userEvent.mouseButton.y >= 385 && userEvent.mouseButton.y <= 445))
-//        {
-//            textBoxFlag.titleTextBox = false;
-//            textBoxFlag.dateDayBox = false;
-//            textBoxFlag.dateMonthBox = true;
-//            textBoxFlag.dateYearBox = false;
-//            textBoxFlag.descriptionTextBox = false;
-//            textBoxProperties::dateMonthBox.setPosition(330, 395);
-//        }
-//        else if (pageFlag.addAnEventMenu == true && (userEvent.mouseButton.x >= 480 && userEvent.mouseButton.x <= 665) &&
-//            (userEvent.mouseButton.y >= 385 && userEvent.mouseButton.y <= 445))
-//        {
-//            textBoxFlag.titleTextBox = false;
-//            textBoxFlag.dateDayBox = false;
-//            textBoxFlag.dateMonthBox = false;
-//            textBoxFlag.dateYearBox = true;
-//            textBoxFlag.descriptionTextBox = false;
-//            textBoxProperties::dateYearBox.setPosition(540, 395);
-//        }
-//        else if (pageFlag.addAnEventMenu == true && (userEvent.mouseButton.x >= 480 && userEvent.mouseButton.x <= 665) &&
-//            (userEvent.mouseButton.y >= 385 && userEvent.mouseButton.y <= 445))
-//        {
-//            textBoxFlag.titleTextBox = false;
-//            textBoxFlag.dateDayBox = false;
-//            textBoxFlag.dateMonthBox = false;
-//            textBoxFlag.dateYearBox = true;
-//            textBoxFlag.descriptionTextBox = true;
-//            textBoxProperties::descriptionBox.setPosition(530, 395);
-//        }
-//        else if (pageFlag.addAnEventMenu == true && (userEvent.mouseButton.x >= 92 && userEvent.mouseButton.x <= 190) &&
-//            (userEvent.mouseButton.y >= 775 && userEvent.mouseButton.y <= 835))
-//        {
-//            std::string date = textBoxProperties::enteredTextForDayBox + "." + textBoxProperties::enteredTextForMonthBox + "." + textBoxProperties::enteredTextForYearBox;
-//            setDataToNodes(*head, textBoxProperties::enteredTextForTitleBox, date,
-//                textBoxProperties::enteredTextForDescriptionBox);
-//
-//            textBoxProperties::enteredTextForTitleBox = "";
-//            textBoxProperties::enteredTextForDayBox = "";
-//            textBoxProperties::enteredTextForMonthBox = "";
-//            textBoxProperties::enteredTextForYearBox = "";
-//            textBoxProperties::enteredTextForDescriptionBox = "";
-//
-//            textBoxProperties::titleBox.setString(textBoxProperties::enteredTextForTitleBox);
-//            textBoxProperties::dateDayBox.setString(textBoxProperties::enteredTextForDayBox);
-//            textBoxProperties::descriptionBox.setString(textBoxProperties::enteredTextForDescriptionBox);
-//
-//            currentPageTexture.loadFromFile("Images and fonts/Timeline menu.png");
-//
-//            pageFlag.homeMenu = false;
-//            pageFlag.addAnEventMenu = false;
-//            pageFlag.timelineMenu = true;
-//            pageFlag.displayAllEvents = false;
-//        }
-//        else if (pageFlag.addAnEventMenu == true && (userEvent.mouseButton.x >= 200 && userEvent.mouseButton.x <= 330) &&
-//            (userEvent.mouseButton.y >= 775 && userEvent.mouseButton.y <= 835))
-//        {
-//            textBoxProperties::enteredTextForTitleBox = "";
-//            textBoxProperties::enteredTextForDayBox = "";
-//            textBoxProperties::enteredTextForDescriptionBox = "";
-//
-//            textBoxProperties::titleBox.setString(textBoxProperties::enteredTextForTitleBox);
-//            textBoxProperties::dateDayBox.setString(textBoxProperties::enteredTextForDayBox);
-//            textBoxProperties::descriptionBox.setString(textBoxProperties::enteredTextForDescriptionBox);
-//
-//            currentPageTexture.loadFromFile("Images and fonts/Timeline menu.png");
-//
-//            pageFlag.homeMenu = false;
-//            pageFlag.addAnEventMenu = false;
-//            pageFlag.timelineMenu = true;
-//            pageFlag.displayAllEvents = false;
-//        }
-//        else if ((userEvent.mouseButton.x >= 180 && userEvent.mouseButton.x <= 620) &&
-//            (userEvent.mouseButton.y >= 515 && userEvent.mouseButton.y <= 620) &&
-//            pageFlag.timelineMenu == true)
-//        {
-//            std::cout << "Enter view all events menu \n";
-//
-//            currentPageTexture.loadFromFile("");
-//
-//            pageFlag.addAnEventMenu = false;
-//            pageFlag.timelineMenu = false;
-//            pageFlag.homeMenu = false;
-//            pageFlag.displayAllEvents = true;
-//        }
-//        break;
-//    }
-//
-//    default:
-//        break;
-//    }
-//}
-//
-//std::string deleteCharFromText(std::string enteredText)
-//{
-//    std::string processedText;
-//
-//    for (size_t i = 0; i < enteredText.size() - 1; i++)
-//    {
-//        processedText += enteredText[i];
-//    }
-//
-//    return processedText;
-//}
-//
-//void selectTextBox(sf::RenderWindow& window, sf::Event& userEvent, SELECTED_TEXT_BOX& textBoxFlag)
-//{
-//    switch (userEvent.type)
-//    {
-//    case sf::Event::TextEntered:
-//        if (userEvent.text.unicode < 128 && textBoxFlag.titleTextBox == true)
-//        {
-//            if (userEvent.text.unicode != 13 && userEvent.text.unicode != 8)
-//            {
-//                textBoxProperties::enteredTextForTitleBox += static_cast<char>(userEvent.text.unicode);
-//                textBoxProperties::titleBox.setString(textBoxProperties::enteredTextForTitleBox);
-//            }
-//            else if (userEvent.text.unicode == 8 && textBoxProperties::enteredTextForTitleBox.size() > 0)
-//            {
-//                textBoxProperties::enteredTextForTitleBox = deleteCharFromText(textBoxProperties::enteredTextForTitleBox);
-//                textBoxProperties::titleBox.setString(textBoxProperties::enteredTextForTitleBox);
-//            }
-//        }
-//        else if (userEvent.text.unicode < 128 && textBoxFlag.dateDayBox == true)
-//        {
-//            if (userEvent.text.unicode != 13 && userEvent.text.unicode != 8)
-//            {
-//                textBoxProperties::enteredTextForDayBox += static_cast<char>(userEvent.text.unicode);
-//                textBoxProperties::dateDayBox.setString(textBoxProperties::enteredTextForDayBox);
-//            }
-//            else if (userEvent.text.unicode == 8 && textBoxProperties::enteredTextForDayBox.size() > 0)
-//            {
-//                textBoxProperties::enteredTextForDayBox = deleteCharFromText(textBoxProperties::enteredTextForDayBox);
-//                textBoxProperties::dateDayBox.setString(textBoxProperties::enteredTextForDayBox);
-//            }
-//        }
-//        else if (userEvent.text.unicode < 128 && textBoxFlag.dateMonthBox == true)
-//        {
-//            if (userEvent.text.unicode != 13 && userEvent.text.unicode != 8)
-//            {
-//                textBoxProperties::enteredTextForMonthBox += static_cast<char>(userEvent.text.unicode);
-//                textBoxProperties::dateMonthBox.setString(textBoxProperties::enteredTextForMonthBox);
-//            }
-//            else if (userEvent.text.unicode == 8 && textBoxProperties::enteredTextForMonthBox.size() > 0)
-//            {
-//                textBoxProperties::enteredTextForMonthBox = deleteCharFromText(textBoxProperties::enteredTextForMonthBox);
-//                textBoxProperties::dateMonthBox.setString(textBoxProperties::enteredTextForMonthBox);
-//            }
-//        }
-//        else if (userEvent.text.unicode < 128 && textBoxFlag.dateYearBox == true)
-//        {
-//            if (userEvent.text.unicode != 13 && userEvent.text.unicode != 8)
-//            {
-//                textBoxProperties::enteredTextForYearBox += static_cast<char>(userEvent.text.unicode);
-//                textBoxProperties::dateYearBox.setString(textBoxProperties::enteredTextForYearBox);
-//            }
-//            else if (userEvent.text.unicode == 8 && textBoxProperties::enteredTextForYearBox.size() > 0)
-//            {
-//                textBoxProperties::enteredTextForYearBox = deleteCharFromText(textBoxProperties::enteredTextForYearBox);
-//                textBoxProperties::dateYearBox.setString(textBoxProperties::enteredTextForYearBox);
-//            }
-//        }
-//        else if (userEvent.text.unicode < 128 && textBoxFlag.descriptionTextBox == true)
-//        {
-//            if (userEvent.text.unicode != 13 && userEvent.text.unicode != 8)
-//            {
-//                textBoxProperties::enteredTextForDescriptionBox += static_cast<char>(userEvent.text.unicode);
-//                textBoxProperties::descriptionBox.setString(textBoxProperties::enteredTextForDescriptionBox);
-//            }
-//            else if (userEvent.text.unicode == 8 && textBoxProperties::enteredTextForDescriptionBox.size() > 0)
-//            {
-//                textBoxProperties::enteredTextForDescriptionBox = deleteCharFromText(textBoxProperties::enteredTextForDescriptionBox);
-//                textBoxProperties::descriptionBox.setString(textBoxProperties::enteredTextForDescriptionBox);
-//            }
-//        }
-//
-//        break;
-//    default:
-//        break;
-//    }
-//}
-
-void createPages(std::vector<PagePropertiesContainer*>& pages)
+void switchPages(sf::RenderWindow& window, sf::Event& userEvent, sf::Texture& currentPageTexture, CURRENT_PAGE& pageFlag,
+    SELECTED_TEXT_BOX& textBoxFlag, NODE* head)
 {
-    pages.push_back(createLoginPage());
-}
-
-void initPages(std::vector<PagePropertiesContainer*>& pages)
-{
-    for (auto page : pages)
+    switch (userEvent.type)
     {
-        page->initialize();
+    case sf::Event::Closed:
+    {
+        window.close();
+        break;
+    }
+
+    case sf::Event::MouseButtonPressed:
+    {
+        std::cout << userEvent.mouseButton.x << " ~ " << userEvent.mouseButton.y << std::endl;
+
+        if ((userEvent.mouseButton.x >= 360 && userEvent.mouseButton.x <= 510) &&
+            (userEvent.mouseButton.y >= 600 && userEvent.mouseButton.y <= 665) && pageFlag.loginPage == true)
+        {
+            std::cout << "Enter register form \n";
+            currentPageTexture.loadFromFile("Images and fonts/Register-form.png");
+            pageFlag.loginPage = false;
+            pageFlag.registerPage = true;
+            pageFlag.homeMenu = false;
+            pageFlag.timelineMenu = false;
+            pageFlag.addAnEventMenu = false;
+        }
+        else if ((userEvent.mouseButton.x >= 360 && userEvent.mouseButton.x <= 480) &&
+            (userEvent.mouseButton.y >= 600 && userEvent.mouseButton.y <= 665) && pageFlag.registerPage == true)
+        {
+            std::cout << "Enter register form \n";
+            currentPageTexture.loadFromFile("Images and fonts/Login-form.png");
+            pageFlag.loginPage = true;
+            pageFlag.registerPage = false;
+            pageFlag.homeMenu = false;
+            pageFlag.timelineMenu = false;
+            pageFlag.addAnEventMenu = false;
+        }
+        else if ((userEvent.mouseButton.x >= 170 && userEvent.mouseButton.x <= 625) &&
+            (userEvent.mouseButton.y >= 400 && userEvent.mouseButton.y <= 510) && pageFlag.homeMenu == true)
+        {
+            std::cout << "Enter timeline menu \n";
+            currentPageTexture.loadFromFile("Images and fonts/Timeline-menu.png");
+            pageFlag.loginPage = false;
+            pageFlag.registerPage = false;
+            pageFlag.homeMenu = false;
+            pageFlag.timelineMenu = true;
+            pageFlag.addAnEventMenu = false;
+        }
+        else if ((userEvent.mouseButton.x >= 20 && userEvent.mouseButton.x <= 172) &&
+            (userEvent.mouseButton.y >= 800 && userEvent.mouseButton.y <= 880) && pageFlag.timelineMenu == true)
+        {
+            std::cout << "Back to main menu \n";
+            currentPageTexture.loadFromFile("Images and fonts/Home-page.png");
+            pageFlag.loginPage = false;
+            pageFlag.registerPage = false;
+            pageFlag.homeMenu = true;
+            pageFlag.timelineMenu = false;
+            pageFlag.addAnEventMenu = false;
+        }
+        else if ((userEvent.mouseButton.x >= 170 && userEvent.mouseButton.x <= 625) &&
+            (userEvent.mouseButton.y >= 340 && userEvent.mouseButton.y <= 450) &&
+            pageFlag.timelineMenu == true)
+        {
+            std::cout << "Enter add an event option \n";
+
+            currentPageTexture.loadFromFile("Images and fonts/Add-an-event-form.png");
+
+            pageFlag.loginPage = false;
+            pageFlag.registerPage = false;
+            pageFlag.addAnEventMenu = true;
+            pageFlag.timelineMenu = false;
+            pageFlag.homeMenu = false;
+        }
+        else if (pageFlag.addAnEventMenu == true && (userEvent.mouseButton.x >= 120 && userEvent.mouseButton.x <= 690) &&
+            (userEvent.mouseButton.y >= 250 && userEvent.mouseButton.y <= 300))
+        {
+            textBoxFlag.titleTextBox = true;
+            textBoxFlag.dateTextBox = false;
+            textBoxFlag.descriptionTextBox = false;
+            textBoxFlag.username = false;
+            textBoxFlag.password = false;
+            textBoxProperties::titleBox.setPosition(180, 255);
+
+        }
+        else if (pageFlag.addAnEventMenu == true && (userEvent.mouseButton.x >= 120 && userEvent.mouseButton.x <= 415) &&
+            (userEvent.mouseButton.y >= 390 && userEvent.mouseButton.y <= 450))
+        {
+            textBoxFlag.titleTextBox = false;
+            textBoxFlag.dateTextBox = true;
+            textBoxFlag.descriptionTextBox = false;
+            textBoxFlag.username = false;
+            textBoxFlag.password = false;
+            textBoxProperties::dateBox.setPosition(180, 400);
+
+        }
+        else if (pageFlag.addAnEventMenu == true && (userEvent.mouseButton.x >= 120 && userEvent.mouseButton.x <= 690) &&
+            (userEvent.mouseButton.y >= 530 && userEvent.mouseButton.y <= 700))
+        {
+            textBoxFlag.titleTextBox = false;
+            textBoxFlag.dateTextBox = false;
+            textBoxFlag.descriptionTextBox = true;
+            textBoxFlag.username = false;
+            textBoxFlag.password = false;
+            textBoxProperties::descriptionBox.setPosition(140, 540);
+        }
+        else if (pageFlag.loginPage == true && (userEvent.mouseButton.x >= 75 && userEvent.mouseButton.x <= 720) &&
+            (userEvent.mouseButton.y >= 380 && userEvent.mouseButton.y <= 440))
+        {
+            textBoxFlag.titleTextBox = false;
+            textBoxFlag.dateTextBox = false;
+            textBoxFlag.descriptionTextBox = false;
+            textBoxFlag.username = true;
+            textBoxFlag.password = false;
+            textBoxProperties::username.setPosition(140, 390);
+        }
+        else if (pageFlag.loginPage == true && (userEvent.mouseButton.x >= 75 && userEvent.mouseButton.x <= 720) &&
+            (userEvent.mouseButton.y >= 515 && userEvent.mouseButton.y <= 580))
+        {
+            textBoxFlag.titleTextBox = false;
+            textBoxFlag.dateTextBox = false;
+            textBoxFlag.descriptionTextBox = false;
+            textBoxFlag.username = false;
+            textBoxFlag.password = true;
+            textBoxProperties::password.setPosition(140, 525);
+        }
+        else if (pageFlag.addAnEventMenu == true && (userEvent.mouseButton.x >= 120 && userEvent.mouseButton.x <= 800) &&
+            (userEvent.mouseButton.y >= 760 && userEvent.mouseButton.y <= 815))
+        {
+            setDataToNodes(*head, textBoxProperties::enteredTextForTitleBox, textBoxProperties::enteredTextForDateBox,
+                textBoxProperties::enteredTextForDescriptionBox);
+
+            textBoxProperties::enteredTextForTitleBox = "";
+            textBoxProperties::enteredTextForDateBox = "";
+            textBoxProperties::enteredTextForDescriptionBox = "";
+
+            textBoxProperties::titleBox.setString(textBoxProperties::enteredTextForTitleBox);
+            textBoxProperties::dateBox.setString(textBoxProperties::enteredTextForDateBox);
+            textBoxProperties::descriptionBox.setString(textBoxProperties::enteredTextForDescriptionBox);
+
+            currentPageTexture.loadFromFile("Images and fonts/Timeline-menu.png");
+
+            pageFlag.loginPage = false;
+            pageFlag.registerPage = false;
+            pageFlag.homeMenu = false;
+            pageFlag.addAnEventMenu = false;
+            pageFlag.timelineMenu = true;
+        }
+        else if (pageFlag.addAnEventMenu == true && (userEvent.mouseButton.x >= 225 && userEvent.mouseButton.x <= 340) &&
+            (userEvent.mouseButton.y >= 760 && userEvent.mouseButton.y <= 815))
+        {
+            textBoxProperties::enteredTextForTitleBox = "";
+            textBoxProperties::enteredTextForDateBox = "";
+            textBoxProperties::enteredTextForDescriptionBox = "";
+
+            textBoxProperties::titleBox.setString(textBoxProperties::enteredTextForTitleBox);
+            textBoxProperties::dateBox.setString(textBoxProperties::enteredTextForDateBox);
+            textBoxProperties::descriptionBox.setString(textBoxProperties::enteredTextForDescriptionBox);
+
+            currentPageTexture.loadFromFile("Images and fonts/Timeline-menu.png");
+
+            pageFlag.loginPage = false;
+            pageFlag.registerPage = false;
+            pageFlag.homeMenu = false;
+            pageFlag.addAnEventMenu = false;
+            pageFlag.timelineMenu = true;
+        }
+        break;
+    }
+
+    default:
+        break;
     }
 }
 
-void destroyPages(std::vector<PagePropertiesContainer*>& pages)
+std::string deleteCharFromText(std::string enteredText)
 {
-    for (auto page : pages)
+    std::string processedText;
+
+    for (size_t i = 0; i < enteredText.size() - 1; i++)
     {
-        page->destroy();
+        processedText += enteredText[i];
+    }
+
+    return processedText;
+}
+
+void selectTextBox(sf::RenderWindow& window, sf::Event& userEvent, SELECTED_TEXT_BOX& textBoxFlag)
+{
+    switch (userEvent.type)
+    {
+    case sf::Event::TextEntered:
+        if (userEvent.text.unicode < 128 && textBoxFlag.titleTextBox == true)
+        {
+            if (userEvent.text.unicode != 13 && userEvent.text.unicode != 8)
+            {
+                textBoxProperties::enteredTextForTitleBox += static_cast<char>(userEvent.text.unicode);
+                textBoxProperties::titleBox.setString(textBoxProperties::enteredTextForTitleBox);
+            }
+            else if (userEvent.text.unicode == 8 && textBoxProperties::enteredTextForTitleBox.size() > 0)
+            {
+                textBoxProperties::enteredTextForTitleBox = deleteCharFromText(textBoxProperties::enteredTextForTitleBox);
+                textBoxProperties::titleBox.setString(textBoxProperties::enteredTextForTitleBox);
+            }
+        }
+        else if (userEvent.text.unicode < 128 && textBoxFlag.dateTextBox == true)
+        {
+            if (userEvent.text.unicode != 13 && userEvent.text.unicode != 8)
+            {
+                textBoxProperties::enteredTextForDateBox += static_cast<char>(userEvent.text.unicode);
+                textBoxProperties::dateBox.setString(textBoxProperties::enteredTextForDateBox);
+            }
+            else if (userEvent.text.unicode == 8 && textBoxProperties::enteredTextForDateBox.size() > 0)
+            {
+                textBoxProperties::enteredTextForDateBox = deleteCharFromText(textBoxProperties::enteredTextForDateBox);
+                textBoxProperties::dateBox.setString(textBoxProperties::enteredTextForDateBox);
+            }
+        }
+        else if (userEvent.text.unicode < 128 && textBoxFlag.descriptionTextBox == true)
+        {
+            if (userEvent.text.unicode != 13 && userEvent.text.unicode != 8)
+            {
+                textBoxProperties::enteredTextForDescriptionBox += static_cast<char>(userEvent.text.unicode);
+                textBoxProperties::descriptionBox.setString(textBoxProperties::enteredTextForDescriptionBox);
+            }
+            else if (userEvent.text.unicode == 8 && textBoxProperties::enteredTextForDescriptionBox.size() > 0)
+            {
+                textBoxProperties::enteredTextForDescriptionBox = deleteCharFromText(textBoxProperties::enteredTextForDescriptionBox);
+                textBoxProperties::descriptionBox.setString(textBoxProperties::enteredTextForDescriptionBox);
+            }
+        }
+        else if (userEvent.text.unicode < 128 && textBoxFlag.username == true)
+        {
+            if (userEvent.text.unicode != 13 && userEvent.text.unicode != 8)
+            {
+                textBoxProperties::enteredTextForUsernameBox += static_cast<char>(userEvent.text.unicode);
+                textBoxProperties::username.setString(textBoxProperties::enteredTextForUsernameBox);
+            }
+            else if (userEvent.text.unicode == 8 && textBoxProperties::enteredTextForUsernameBox.size() > 0)
+            {
+                textBoxProperties::enteredTextForUsernameBox = deleteCharFromText(textBoxProperties::enteredTextForUsernameBox);
+                textBoxProperties::username.setString(textBoxProperties::enteredTextForUsernameBox);
+            }
+        }
+        else if (userEvent.text.unicode < 128 && textBoxFlag.password == true)
+        {
+            if (userEvent.text.unicode != 13 && userEvent.text.unicode != 8)
+            {
+                textBoxProperties::enteredTextForPasswordBox += static_cast<char>(userEvent.text.unicode);
+                textBoxProperties::password.setString(textBoxProperties::enteredTextForPasswordBox);
+            }
+            else if (userEvent.text.unicode == 8 && textBoxProperties::enteredTextForPasswordBox.size() > 0)
+            {
+                textBoxProperties::enteredTextForPasswordBox = deleteCharFromText(textBoxProperties::enteredTextForPasswordBox);
+                textBoxProperties::password.setString(textBoxProperties::enteredTextForPasswordBox);
+            }
+        }
+
+        break;
+    default:
+        break;
     }
 }
 
-PagePropertiesContainer* getPage(PagePropertiesContainer* cs = createLoginPage())
+void startProgram(NODE* head)
 {
-    return cs;
-}
-
-void startProgram(/*NODE* head*/)
-{
-    bool shouldRun = true;
-    PagePropertiesContainer* currentPage = nullptr;
-    std::vector<PagePropertiesContainer*> pages;
+    CURRENT_PAGE pageFlag;
+    SELECTED_TEXT_BOX textBoxFlag;
 
     sf::RenderWindow window(sf::VideoMode(800, 900), "Historya", sf::Style::Close);
     window.setFramerateLimit(30);
-    std::string selectedField = "";
-    /*CURRENT_PAGE pageFlag;
-    SELECTED_TEXT_BOX textBoxFlag;
-
 
     sf::Texture* currentPageTexture = new sf::Texture;
-    currentPageTexture->loadFromFile("Images and fonts/Home-page.png");
+    currentPageTexture->loadFromFile("Images and fonts/Login-form.png");
 
     sf::Sprite* currentPageSprite = new sf::Sprite;
     currentPageSprite->setTexture(*currentPageTexture);
@@ -300,79 +284,44 @@ void startProgram(/*NODE* head*/)
     font.loadFromFile("images and fonts/alkesregular.ttf");
 
     textBoxProperties::titleBox.setFont(font);
-    textBoxProperties::dateDayBox.setFont(font);
-    textBoxProperties::dateMonthBox.setFont(font);
-    textBoxProperties::dateYearBox.setFont(font);
+    textBoxProperties::dateBox.setFont(font);
     textBoxProperties::descriptionBox.setFont(font);
+    textBoxProperties::username.setFont(font);
+    textBoxProperties::password.setFont(font);
 
     textBoxProperties::titleBox.setCharacterSize(30);
-    textBoxProperties::dateDayBox.setCharacterSize(30);
-    textBoxProperties::dateMonthBox.setCharacterSize(30);
-    textBoxProperties::dateYearBox.setCharacterSize(30);
+    textBoxProperties::dateBox.setCharacterSize(30);
     textBoxProperties::descriptionBox.setCharacterSize(30);
+    textBoxProperties::username.setCharacterSize(30);
+    textBoxProperties::password.setCharacterSize(30);
 
     textBoxProperties::titleBox.setFillColor(sf::Color::Black);
-    textBoxProperties::dateDayBox.setFillColor(sf::Color::Black);
-    textBoxProperties::dateMonthBox.setFillColor(sf::Color::Black);
-    textBoxProperties::dateYearBox.setFillColor(sf::Color::Black);
-    textBoxProperties::descriptionBox.setFillColor(sf::Color::Black);*/
-
-    createPages(pages);
-    initPages(pages);
-    currentPage = pages[0];
+    textBoxProperties::dateBox.setFillColor(sf::Color::Black);
+    textBoxProperties::descriptionBox.setFillColor(sf::Color::Black);
+    textBoxProperties::username.setFillColor(sf::Color::Black);
+    textBoxProperties::password.setFillColor(sf::Color::Black);
 
     while (window.isOpen())
     {
         sf::Event userEvent;
         while (window.pollEvent(userEvent))
         {
-            /*switchPages(window, userEvent, *currentPageTexture, pageFlag, textBoxFlag, head);
+            switchPages(window, userEvent, *currentPageTexture, pageFlag, textBoxFlag, head);
             selectTextBox(window, userEvent, textBoxFlag);
-
-            if (userEvent.type == sf::Event::MouseButtonPressed)
-            {
-                std::cout << userEvent.mouseButton.x << " ~ " << userEvent.mouseButton.y << "\n";
-            }*/
-
-            if (userEvent.type == sf::Event::Closed)
-            {
-                window.close();
-            }
-            else
-            {
-
-                if (!(shouldRun = currentPage->handleEvents(userEvent, selectedField)))
-                {
-                    window.close();
-                    break;
-                }
-                pages[0]->selectTextBox(userEvent, selectedField);
-                //currentPage = getPage();
-            }
-
-        }
-        if (shouldRun)
-        {
-            window.clear();
-            currentPage->draw(window);
-            window.display();
         }
 
-        /*window.clear();
+        window.clear();
 
         window.draw(*currentPageSprite);
         window.draw(textBoxProperties::titleBox);
-        window.draw(textBoxProperties::dateDayBox);
-        window.draw(textBoxProperties::dateMonthBox);
-        window.draw(textBoxProperties::dateYearBox);
+        window.draw(textBoxProperties::dateBox);
         window.draw(textBoxProperties::descriptionBox);
+        window.draw(textBoxProperties::username);
+        window.draw(textBoxProperties::password);
 
-        window.display();*/
+        window.display();
     }
 
-    //destroyPages(pages);
-    /*delete currentPageTexture;
-    delete currentPageSprite;*/
-
-    return;
+    delete currentPageTexture;
+    delete currentPageSprite;
 }

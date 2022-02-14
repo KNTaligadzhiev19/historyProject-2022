@@ -3,34 +3,35 @@
 
 struct CURRENT_PAGE
 {
-    bool homeMenu = true;
+    bool loginPage = true;
+    bool registerPage = false;
+    bool homeMenu = false;
     bool timelineMenu = false;
     bool addAnEventMenu = false;
-    bool displayAllEvents = false;
 };
 
 struct SELECTED_TEXT_BOX
 {
     bool titleTextBox = false;
-    bool dateDayBox = false;
-    bool dateMonthBox = false;
-    bool dateYearBox = false;
+    bool dateTextBox = false;
     bool descriptionTextBox = false;
+    bool username = false;
+    bool password = false;
 };
 
 namespace textBoxProperties
 {
     static sf::Text titleBox;
-    static sf::Text dateDayBox;
-    static sf::Text dateMonthBox;
-    static sf::Text dateYearBox;
+    static sf::Text dateBox;
     static sf::Text descriptionBox;
+    static sf::Text username;
+    static sf::Text password;
 
     static std::string enteredTextForTitleBox = "";
-    static std::string enteredTextForDayBox = "";
-    static std::string enteredTextForMonthBox = "";
-    static std::string enteredTextForYearBox = "";
+    static std::string enteredTextForDateBox = "";
     static std::string enteredTextForDescriptionBox = "";
+    static std::string enteredTextForUsernameBox = "";
+    static std::string enteredTextForPasswordBox = "";
 }
 
-void startProgram(/*NODE* head*/);
+void startProgram(NODE* head);

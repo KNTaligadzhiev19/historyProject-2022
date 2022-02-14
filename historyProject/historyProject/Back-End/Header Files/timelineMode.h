@@ -11,3 +11,5 @@ struct NODE
 };
 
 void setDataToNodes(NODE& head, std::string& title, std::string& date, std::string& description);
+
+//void newElement(NODE* head, std::string& title, std::string& date, std::string& description);

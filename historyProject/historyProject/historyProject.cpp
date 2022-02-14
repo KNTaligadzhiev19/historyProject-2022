@@ -8,5 +8,5 @@ int main()
 	NODE* head = new NODE;
 	head->next = NULL;
 
-	startProgram(/*head*/);
+	startProgram(head);
 }
