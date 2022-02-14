@@ -10,9 +10,14 @@ namespace UnitTestProject
 	{
 	public:
 		
-		TEST_METHOD(TestMethod1)
+		TEST_METHOD(checkLoginForm)
 		{
+			std::string enteredUsername = "admin", enteredPassword = "admin";
+			std::fstream userInfo;
 
+			bool flag = findUser(enteredUsername, enteredPassword, userInfo);
+
+			Assert::IsTrue(flag);
 		}
 	};
 }
