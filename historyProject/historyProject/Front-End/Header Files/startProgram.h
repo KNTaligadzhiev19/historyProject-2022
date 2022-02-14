@@ -9,6 +9,7 @@ struct CURRENT_PAGE
     bool registerPage = false;
     bool homeMenu = false;
     bool timelineMenu = false;
+    bool viewAllEvents = false;
     bool addAnEventMenu = false;
 };
 
@@ -19,6 +20,7 @@ struct SELECTED_TEXT_BOX
     bool descriptionTextBox = false;
     bool username = false;
     bool password = false;
+    bool search = false;
 };
 
 namespace textBoxProperties
@@ -28,12 +30,14 @@ namespace textBoxProperties
     static sf::Text descriptionBox;
     static sf::Text username;
     static sf::Text password;
+    static sf::Text search;
 
     static std::string enteredTextForTitleBox = "";
     static std::string enteredTextForDateBox = "";
     static std::string enteredTextForDescriptionBox = "";
     static std::string enteredTextForUsernameBox = "";
     static std::string enteredTextForPasswordBox = "";
+    static std::string enteredTextForSearchBox = "";
 }
 
 void startProgram(NODE* head);

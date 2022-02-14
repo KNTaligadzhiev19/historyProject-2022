@@ -27,6 +27,7 @@ void switchPages(sf::RenderWindow& window, sf::Event& userEvent, sf::Texture& cu
             pageFlag.homeMenu = false;
             pageFlag.timelineMenu = false;
             pageFlag.addAnEventMenu = false;
+            pageFlag.viewAllEvents = false;
 
             textBoxProperties::enteredTextForUsernameBox = "";
             textBoxProperties::enteredTextForPasswordBox = "";
@@ -47,6 +48,7 @@ void switchPages(sf::RenderWindow& window, sf::Event& userEvent, sf::Texture& cu
                 pageFlag.homeMenu = true;
                 pageFlag.timelineMenu = false;
                 pageFlag.addAnEventMenu = false;
+                pageFlag.viewAllEvents = false;
             }
 
             textBoxProperties::enteredTextForUsernameBox = "";
@@ -66,6 +68,7 @@ void switchPages(sf::RenderWindow& window, sf::Event& userEvent, sf::Texture& cu
             pageFlag.homeMenu = false;
             pageFlag.timelineMenu = false;
             pageFlag.addAnEventMenu = false;
+            pageFlag.viewAllEvents = false;
 
             textBoxProperties::enteredTextForUsernameBox = "";
             textBoxProperties::enteredTextForPasswordBox = "";
@@ -85,6 +88,7 @@ void switchPages(sf::RenderWindow& window, sf::Event& userEvent, sf::Texture& cu
             pageFlag.homeMenu = false;
             pageFlag.timelineMenu = false;
             pageFlag.addAnEventMenu = false;
+            pageFlag.viewAllEvents = false;
 
             textBoxProperties::enteredTextForUsernameBox = "";
             textBoxProperties::enteredTextForPasswordBox = "";
@@ -103,6 +107,31 @@ void switchPages(sf::RenderWindow& window, sf::Event& userEvent, sf::Texture& cu
             pageFlag.homeMenu = false;
             pageFlag.timelineMenu = true;
             pageFlag.addAnEventMenu = false;
+            pageFlag.viewAllEvents = false;
+        }
+        else if ((userEvent.mouseButton.x >= 170 && userEvent.mouseButton.x <= 625) &&
+            (userEvent.mouseButton.y >= 515 && userEvent.mouseButton.y <= 615) && pageFlag.timelineMenu == true)
+        {
+            std::cout << "Enter view all events menu \n";
+            currentPageTexture.loadFromFile("Images and fonts/View-all-events-page.png");
+            pageFlag.loginPage = false;
+            pageFlag.registerPage = false;
+            pageFlag.homeMenu = false;
+            pageFlag.timelineMenu = false;
+            pageFlag.viewAllEvents = true;
+            pageFlag.addAnEventMenu = false;
+        }
+        else if ((userEvent.mouseButton.x >= 25 && userEvent.mouseButton.x <= 160) &&
+            (userEvent.mouseButton.y >= 815 && userEvent.mouseButton.y <= 870) && pageFlag.viewAllEvents == true)
+        {
+            std::cout << "Enter timeline menu \n";
+            currentPageTexture.loadFromFile("Images and fonts/Timeline-menu.png");
+            pageFlag.loginPage = false;
+            pageFlag.registerPage = false;
+            pageFlag.homeMenu = false;
+            pageFlag.timelineMenu = true;
+            pageFlag.viewAllEvents = false;
+            pageFlag.addAnEventMenu = false;
         }
         else if ((userEvent.mouseButton.x >= 20 && userEvent.mouseButton.x <= 172) &&
             (userEvent.mouseButton.y >= 800 && userEvent.mouseButton.y <= 880) && pageFlag.timelineMenu == true)
@@ -114,6 +143,7 @@ void switchPages(sf::RenderWindow& window, sf::Event& userEvent, sf::Texture& cu
             pageFlag.homeMenu = true;
             pageFlag.timelineMenu = false;
             pageFlag.addAnEventMenu = false;
+            pageFlag.viewAllEvents = false;
         }
         else if ((userEvent.mouseButton.x >= 170 && userEvent.mouseButton.x <= 625) &&
             (userEvent.mouseButton.y >= 340 && userEvent.mouseButton.y <= 450) &&
@@ -128,6 +158,19 @@ void switchPages(sf::RenderWindow& window, sf::Event& userEvent, sf::Texture& cu
             pageFlag.addAnEventMenu = true;
             pageFlag.timelineMenu = false;
             pageFlag.homeMenu = false;
+            pageFlag.viewAllEvents = false;
+        }
+        else if (pageFlag.viewAllEvents == true && (userEvent.mouseButton.x >= 115 && userEvent.mouseButton.x <= 590) &&
+        (userEvent.mouseButton.y >= 140 && userEvent.mouseButton.y <= 220))
+        {
+            textBoxFlag.titleTextBox = false;
+            textBoxFlag.dateTextBox = false;
+            textBoxFlag.descriptionTextBox = false;
+            textBoxFlag.username = false;
+            textBoxFlag.password = false;
+            textBoxFlag.search = true;
+            textBoxProperties::search.setPosition(150, 160);
+
         }
         else if (pageFlag.addAnEventMenu == true && (userEvent.mouseButton.x >= 120 && userEvent.mouseButton.x <= 690) &&
             (userEvent.mouseButton.y >= 250 && userEvent.mouseButton.y <= 300))
@@ -137,6 +180,7 @@ void switchPages(sf::RenderWindow& window, sf::Event& userEvent, sf::Texture& cu
             textBoxFlag.descriptionTextBox = false;
             textBoxFlag.username = false;
             textBoxFlag.password = false;
+            textBoxFlag.search = false;
             textBoxProperties::titleBox.setPosition(180, 255);
 
         }
@@ -148,6 +192,7 @@ void switchPages(sf::RenderWindow& window, sf::Event& userEvent, sf::Texture& cu
             textBoxFlag.descriptionTextBox = false;
             textBoxFlag.username = false;
             textBoxFlag.password = false;
+            textBoxFlag.search = false;
             textBoxProperties::dateBox.setPosition(180, 400);
 
         }
@@ -159,6 +204,7 @@ void switchPages(sf::RenderWindow& window, sf::Event& userEvent, sf::Texture& cu
             textBoxFlag.descriptionTextBox = true;
             textBoxFlag.username = false;
             textBoxFlag.password = false;
+            textBoxFlag.search = false;
             textBoxProperties::descriptionBox.setPosition(140, 540);
         }
         else if (pageFlag.loginPage == true && (userEvent.mouseButton.x >= 75 && userEvent.mouseButton.x <= 720) &&
@@ -169,6 +215,7 @@ void switchPages(sf::RenderWindow& window, sf::Event& userEvent, sf::Texture& cu
             textBoxFlag.descriptionTextBox = false;
             textBoxFlag.username = true;
             textBoxFlag.password = false;
+            textBoxFlag.search = false;
             textBoxProperties::username.setPosition(140, 390);
         }
         else if (pageFlag.loginPage == true && (userEvent.mouseButton.x >= 75 && userEvent.mouseButton.x <= 720) &&
@@ -179,6 +226,7 @@ void switchPages(sf::RenderWindow& window, sf::Event& userEvent, sf::Texture& cu
             textBoxFlag.descriptionTextBox = false;
             textBoxFlag.username = false;
             textBoxFlag.password = true;
+            textBoxFlag.search = false;
             textBoxProperties::password.setPosition(140, 525);
         }
         else if (pageFlag.registerPage == true && (userEvent.mouseButton.x >= 75 && userEvent.mouseButton.x <= 720) &&
@@ -189,6 +237,7 @@ void switchPages(sf::RenderWindow& window, sf::Event& userEvent, sf::Texture& cu
             textBoxFlag.descriptionTextBox = false;
             textBoxFlag.username = true;
             textBoxFlag.password = false;
+            textBoxFlag.search = false;
             textBoxProperties::username.setPosition(140, 390);
         }
         else if (pageFlag.registerPage == true && (userEvent.mouseButton.x >= 75 && userEvent.mouseButton.x <= 720) &&
@@ -199,6 +248,7 @@ void switchPages(sf::RenderWindow& window, sf::Event& userEvent, sf::Texture& cu
             textBoxFlag.descriptionTextBox = false;
             textBoxFlag.username = false;
             textBoxFlag.password = true;
+            textBoxFlag.search = false;
             textBoxProperties::password.setPosition(140, 525);
         }
         else if (pageFlag.addAnEventMenu == true && (userEvent.mouseButton.x >= 120 && userEvent.mouseButton.x <= 800) &&
@@ -222,6 +272,7 @@ void switchPages(sf::RenderWindow& window, sf::Event& userEvent, sf::Texture& cu
             pageFlag.homeMenu = false;
             pageFlag.addAnEventMenu = false;
             pageFlag.timelineMenu = true;
+            pageFlag.viewAllEvents = false;
 
             break;
         }
@@ -243,6 +294,7 @@ void switchPages(sf::RenderWindow& window, sf::Event& userEvent, sf::Texture& cu
             pageFlag.homeMenu = false;
             pageFlag.addAnEventMenu = false;
             pageFlag.timelineMenu = true;
+            pageFlag.viewAllEvents = false;
 
             break;
         }
@@ -324,6 +376,19 @@ void selectTextBox(sf::RenderWindow& window, sf::Event& userEvent, SELECTED_TEXT
                 textBoxProperties::password.setString(textBoxProperties::enteredTextForPasswordBox);
             }
         }
+        else if (userEvent.text.unicode < 128 && textBoxFlag.search == true)
+        {
+            if (userEvent.text.unicode != 13 && userEvent.text.unicode != 8)
+            {
+                textBoxProperties::enteredTextForSearchBox += static_cast<char>(userEvent.text.unicode);
+                textBoxProperties::search.setString(textBoxProperties::enteredTextForSearchBox);
+            }
+            else if (userEvent.text.unicode == 8 && textBoxProperties::enteredTextForSearchBox.size() > 0)
+            {
+                textBoxProperties::enteredTextForSearchBox.pop_back();
+                textBoxProperties::search.setString(textBoxProperties::enteredTextForSearchBox);
+            }
+        }
 
         break;
     default:
@@ -355,18 +420,21 @@ void startProgram(NODE* head)
     textBoxProperties::descriptionBox.setFont(font);
     textBoxProperties::username.setFont(font);
     textBoxProperties::password.setFont(font);
+    textBoxProperties::search.setFont(font);
 
     textBoxProperties::titleBox.setCharacterSize(30);
     textBoxProperties::dateBox.setCharacterSize(30);
     textBoxProperties::descriptionBox.setCharacterSize(30);
     textBoxProperties::username.setCharacterSize(30);
     textBoxProperties::password.setCharacterSize(30);
+    textBoxProperties::search.setCharacterSize(30);
 
     textBoxProperties::titleBox.setFillColor(sf::Color::Black);
     textBoxProperties::dateBox.setFillColor(sf::Color::Black);
     textBoxProperties::descriptionBox.setFillColor(sf::Color::Black);
     textBoxProperties::username.setFillColor(sf::Color::Black);
     textBoxProperties::password.setFillColor(sf::Color::Black);
+    textBoxProperties::search.setFillColor(sf::Color::White);
 
     while (window.isOpen())
     {
@@ -385,6 +453,7 @@ void startProgram(NODE* head)
         window.draw(textBoxProperties::descriptionBox);
         window.draw(textBoxProperties::username);
         window.draw(textBoxProperties::password);
+        window.draw(textBoxProperties::search);
 
         window.display();
     }
