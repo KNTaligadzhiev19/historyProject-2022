@@ -20,10 +20,10 @@
 > 2. **KNTaligadzhiev19** - **Back-end Developer**	
    - ***GitHub profile***: [***KNTaligadzhiev19***](https://github.com/KNTaligadzhiev19)	
 
-> 4. **GVIvanov19** - **Front-end Developer**		
+> 3. **GVIvanov19** - **Front-end Developer**		
    - ***GitHub profile***: [***GVIvanov19***](https://github.com/GVIvanov19)	
 
-> 5. **PZSpasov19** - **Q&A engineer**		
+> 4. **PZSpasov19** - **QA engineer**		
    - ***GitHub profile***: [***PZSpasov19***](https://github.com/PZSpasov19)
 
  ## 💻 Technologies	<a name = "technologies"></a>
