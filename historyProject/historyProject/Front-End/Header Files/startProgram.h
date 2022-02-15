@@ -1,7 +1,8 @@
 #pragma once
+#include "../../Back-End/Header Files/timelineMode.h"
 #include <SFML/Graphics.hpp>
 #include <iostream>
-#include "../../Back-End/Header Files/timelineMode.h"
+#include <vector>
 
 struct CURRENT_PAGE
 {
@@ -31,6 +32,7 @@ namespace textBoxProperties
     static sf::Text username;
     static sf::Text password;
     static sf::Text search;
+    static std::vector<sf::Text> events;
 
     static std::string enteredTextForTitleBox = "";
     static std::string enteredTextForDateBox = "";
@@ -38,6 +40,7 @@ namespace textBoxProperties
     static std::string enteredTextForUsernameBox = "";
     static std::string enteredTextForPasswordBox = "";
     static std::string enteredTextForSearchBox = "";
+    static std::vector<std::string> eventTitle;
 }
 
 void startProgram(NODE* head);

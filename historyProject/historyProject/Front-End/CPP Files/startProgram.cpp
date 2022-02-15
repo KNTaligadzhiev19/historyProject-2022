@@ -1,6 +1,7 @@
 #include "../header Files/startProgram.h"
 #include "../../Back-End/header Files/registerForm.h"
 #include "../../Back-End/header Files/loginForm.h"
+#include "../../Back-End/header Files/viewAllEventsPage.h"
 
 void switchPages(sf::RenderWindow& window, sf::Event& userEvent, sf::Texture& currentPageTexture, CURRENT_PAGE& pageFlag,
     SELECTED_TEXT_BOX& textBoxFlag, NODE* head, std::fstream& userInfo, std::fstream& eventInfo)
@@ -120,6 +121,8 @@ void switchPages(sf::RenderWindow& window, sf::Event& userEvent, sf::Texture& cu
             pageFlag.timelineMenu = false;
             pageFlag.viewAllEvents = true;
             pageFlag.addAnEventMenu = false;
+
+            showEvent(eventInfo, head, textBoxProperties::events, textBoxProperties::eventTitle);
         }
         else if ((userEvent.mouseButton.x >= 25 && userEvent.mouseButton.x <= 160) &&
             (userEvent.mouseButton.y >= 815 && userEvent.mouseButton.y <= 870) && pageFlag.viewAllEvents == true)
@@ -132,6 +135,10 @@ void switchPages(sf::RenderWindow& window, sf::Event& userEvent, sf::Texture& cu
             pageFlag.timelineMenu = true;
             pageFlag.viewAllEvents = false;
             pageFlag.addAnEventMenu = false;
+
+            textBoxProperties::enteredTextForSearchBox = "";
+            textBoxProperties::search.setString(textBoxProperties::enteredTextForSearchBox);
+            
         }
         else if ((userEvent.mouseButton.x >= 20 && userEvent.mouseButton.x <= 172) &&
             (userEvent.mouseButton.y >= 800 && userEvent.mouseButton.y <= 880) && pageFlag.timelineMenu == true)
@@ -160,8 +167,8 @@ void switchPages(sf::RenderWindow& window, sf::Event& userEvent, sf::Texture& cu
             pageFlag.homeMenu = false;
             pageFlag.viewAllEvents = false;
         }
-        else if (pageFlag.viewAllEvents == true && (userEvent.mouseButton.x >= 115 && userEvent.mouseButton.x <= 590) &&
-        (userEvent.mouseButton.y >= 140 && userEvent.mouseButton.y <= 220))
+        else if (pageFlag.viewAllEvents == true && (userEvent.mouseButton.x >= 150 && userEvent.mouseButton.x <= 570) &&
+        (userEvent.mouseButton.y >= 150 && userEvent.mouseButton.y <= 230))
         {
             textBoxFlag.titleTextBox = false;
             textBoxFlag.dateTextBox = false;
@@ -169,7 +176,7 @@ void switchPages(sf::RenderWindow& window, sf::Event& userEvent, sf::Texture& cu
             textBoxFlag.username = false;
             textBoxFlag.password = false;
             textBoxFlag.search = true;
-            textBoxProperties::search.setPosition(150, 160);
+            textBoxProperties::search.setPosition(170, 170);
 
         }
         else if (pageFlag.addAnEventMenu == true && (userEvent.mouseButton.x >= 120 && userEvent.mouseButton.x <= 690) &&
@@ -402,6 +409,10 @@ void startProgram(NODE* head)
     SELECTED_TEXT_BOX textBoxFlag;
     std::fstream userInfo;
     std::fstream eventInfo;
+    size_t setCounter = 0, posY = 170;
+    sf::Text item1;
+    sf::Text item2;
+    sf::Text item3;
 
     sf::RenderWindow window(sf::VideoMode(800, 900), "Historya", sf::Style::Close);
     window.setFramerateLimit(30);
@@ -414,6 +425,7 @@ void startProgram(NODE* head)
 
     sf::Font font;
     font.loadFromFile("images and fonts/alkesregular.ttf");
+
 
     textBoxProperties::titleBox.setFont(font);
     textBoxProperties::dateBox.setFont(font);
@@ -445,7 +457,10 @@ void startProgram(NODE* head)
             selectTextBox(window, userEvent, textBoxFlag);
         }
 
+
         window.clear();
+
+
 
         window.draw(*currentPageSprite);
         window.draw(textBoxProperties::titleBox);
@@ -454,6 +469,25 @@ void startProgram(NODE* head)
         window.draw(textBoxProperties::username);
         window.draw(textBoxProperties::password);
         window.draw(textBoxProperties::search);
+
+        if (pageFlag.viewAllEvents)
+        {
+            for (size_t i = setCounter + 1; i < setCounter + 5; i++)
+            {
+                textBoxProperties::events[i].setFont(font);
+                textBoxProperties::events[i].setCharacterSize(30);
+                textBoxProperties::events[i].setFillColor(sf::Color::White);
+                textBoxProperties::events[i].setPosition(115, posY * (i + 1));
+            }
+
+            item1 = textBoxProperties::events[setCounter + 1];
+            item2 = textBoxProperties::events[setCounter + 2];
+            item3 = textBoxProperties::events[setCounter + 3];
+
+            window.draw(item1);
+            window.draw(item2);
+            window.draw(item3);
+        }
 
         window.display();
     }

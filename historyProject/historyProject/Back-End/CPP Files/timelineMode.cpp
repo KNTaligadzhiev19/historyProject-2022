@@ -12,7 +12,6 @@ void newElement(NODE*& head, std::string& title, std::string& date, std::string&
 	head->next = new NODE(title, date, description);
 }
 
-
 void display(NODE* head)
 {
 	while (head != NULL)
@@ -42,6 +41,7 @@ void writeDataIntoAFile(NODE*& head, std::fstream& eventInfo)
 
 	head = head->next;
 
+
 	while (head != NULL)
 	{
 		eventInfo << head->title << "#" << head->date << "#" << head->description << "#" << "\n";
@@ -60,4 +60,23 @@ void setDataToNodes(NODE*& head, std::string& title, std::string& date, std::str
 	display(head);
 
 	writeDataIntoAFile(head, eventInfo);
+}
+
+void getDataFromFile(NODE*& head, std::fstream& eventInfo)
+{
+	eventInfo.open("eventInfo.txt", std::ios::out);
+	if (!eventInfo.is_open())
+	{
+		std::cout << "Can not open userInfo.txt";
+	}
+
+	head = head->next;
+
+	while (head != NULL)
+	{
+		eventInfo << head->title << "#" << head->date << "#" << head->description << "#" << "\n";
+		head = head->next;
+	}
+
+	eventInfo.close();
 }

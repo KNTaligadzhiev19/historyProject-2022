@@ -146,6 +146,7 @@
     <ClCompile Include="Back-End\CPP Files\loginFrom.cpp" />
     <ClCompile Include="Back-End\CPP Files\registerForm.cpp" />
     <ClCompile Include="Back-End\CPP Files\timelineMode.cpp" />
+    <ClCompile Include="Back-End\CPP Files\viewAllEventsPage.cpp" />
     <ClCompile Include="Front-End\CPP Files\startProgram.cpp" />
     <ClCompile Include="historyProject.cpp" />
   </ItemGroup>
@@ -153,6 +154,7 @@
     <ClInclude Include="Back-End\Header Files\loginForm.h" />
     <ClInclude Include="Back-End\Header Files\registerForm.h" />
     <ClInclude Include="Back-End\Header Files\timelineMode.h" />
+    <ClInclude Include="Back-End\Header Files\viewAllEventsPage.h" />
     <ClInclude Include="Front-End\Header Files\startProgram.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
