@@ -38,7 +38,6 @@ namespace textBoxProperties
     static sf::Text search;
     static std::vector<sf::Text> events;
     static std::vector<sf::Text> eventsAfterSearch;
-    //bool searchFlag = false;
 
     static std::string enteredTextForTitleBox = "";
     static std::string enteredTextForDateBox = "";

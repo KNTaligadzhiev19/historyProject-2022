@@ -65,7 +65,9 @@ void setDataToVectors(NODE* head, std::vector<sf::Text>& events, std::vector<std
 	while (head->next != NULL)
 	{
 		title = head->title + " - " + head->date;
-		eventTitles.push_back(title);
+		eventTitles.push_back(head->title);
+		eventTitles.push_back(head->date);
+		eventTitles.push_back(head->description);
 		text.setString(title);
 		events.push_back(text);
 		head = head->next;

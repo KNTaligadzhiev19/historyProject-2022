@@ -2,12 +2,17 @@
 
 void addAnEventMenuEvents(sf::Event userEvent, CURRENT_PAGE& pageFlag, SELECTED_TEXT_BOX& textBoxFlag, 
 sf::Texture& currentPageTexture, NODE* head, std::fstream& eventInfo, sf::Text& title, sf::Text& date, sf::Text& description,
-std::string& titleStr, std::string& dateStr, std::string& descriptionStr)
+std::string& titleStr, std::string& dateStr, std::string& descriptionStr, bool& flag)
 {
+    title.setString(titleStr);
+    date.setString(dateStr);
+    description.setString(descriptionStr);
+
     switch (userEvent.type)
     {
     case sf::Event::MouseButtonPressed:
     {
+        std::string str = titleStr;
         if (pageFlag.addAnEventMenu == true && (userEvent.mouseButton.x >= 120 && userEvent.mouseButton.x <= 690) &&
         (userEvent.mouseButton.y >= 250 && userEvent.mouseButton.y <= 300))
         {
@@ -49,27 +54,51 @@ std::string& titleStr, std::string& dateStr, std::string& descriptionStr)
             description.setPosition(140, 540);
         }
 
-        else if (pageFlag.addAnEventMenu == true && (userEvent.mouseButton.x >= 120 && userEvent.mouseButton.x <= 800) &&
+        else if (pageFlag.addAnEventMenu == true && (userEvent.mouseButton.x >= 120 && userEvent.mouseButton.x <= 200) &&
         (userEvent.mouseButton.y >= 760 && userEvent.mouseButton.y <= 815))
         {
-            setDataToNodes(head, titleStr, dateStr, descriptionStr, eventInfo);
+            if (flag)
+            {
 
-            titleStr = "";
-            dateStr = "";
-            descriptionStr = "";
+                pageFlag.loginPage = false;
+                pageFlag.registerPage = false;
+                pageFlag.homeMenu = false;
+                pageFlag.addAnEventMenu = false;
+                pageFlag.timelineMenu = false;
+                pageFlag.viewAllEvents = true;
 
-            title.setString(titleStr);
-            date.setString(dateStr);
-            description.setString(descriptionStr);
+                currentPageTexture.loadFromFile("Images and fonts/View-all-events-page.png");
+                modifyTextAfterEdit(head, titleStr, dateStr, descriptionStr, str);
 
-            currentPageTexture.loadFromFile("Images and fonts/Timeline-menu.png");
+                titleStr = "";
+                dateStr = "";
+                descriptionStr = "";
 
-            pageFlag.loginPage = false;
-            pageFlag.registerPage = false;
-            pageFlag.homeMenu = false;
-            pageFlag.addAnEventMenu = false;
-            pageFlag.timelineMenu = true;
-            pageFlag.viewAllEvents = false;
+                title.setString(titleStr);
+                date.setString(dateStr);
+                description.setString(descriptionStr);
+            }
+            else
+            {
+                setDataToNodes(head, titleStr, dateStr, descriptionStr, eventInfo);
+
+                titleStr = "";
+                dateStr = "";
+                descriptionStr = "";
+
+                title.setString(titleStr);
+                date.setString(dateStr);
+                description.setString(descriptionStr);
+
+                currentPageTexture.loadFromFile("Images and fonts/Timeline-menu.png");
+
+                pageFlag.loginPage = false;
+                pageFlag.registerPage = false;
+                pageFlag.homeMenu = false;
+                pageFlag.addAnEventMenu = false;
+                pageFlag.timelineMenu = true;
+                pageFlag.viewAllEvents = false;
+            }
 
             break;
         }

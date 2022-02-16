@@ -107,6 +107,7 @@ void startProgram(NODE* head)
     sf::Text item1;
     sf::Text item2;
     sf::Text item3;
+    bool flag = false;
 
     sf::RenderWindow window(sf::VideoMode(800, 900), "Historya", sf::Style::Close);
     window.setFramerateLimit(30);
@@ -149,18 +150,28 @@ void startProgram(NODE* head)
         {
             loginEvents(userEvent, pageFlag, textBoxFlag, *currentPageTexture, userInfo, textBoxProperties::enteredTextForUsernameBox,
                 textBoxProperties::enteredTextForPasswordBox, textBoxProperties::username, textBoxProperties::password);
+
             homeEvents(userEvent, pageFlag, *currentPageTexture);
+
             timelineEvents(userEvent, pageFlag, textBoxFlag, *currentPageTexture, eventInfo, head, textBoxProperties::events,
                 textBoxProperties::eventTitle);
+
             viewAllEventsEvents(userEvent, pageFlag, textBoxFlag, *currentPageTexture, textBoxProperties::enteredTextForSearchBox,
-                textBoxProperties::search, head, textBoxProperties::eventsAfterSearch);
+                textBoxProperties::search, head, textBoxProperties::eventsAfterSearch, textBoxProperties::enteredTextForTitleBox,
+                textBoxProperties::enteredTextForDateBox, textBoxProperties::enteredTextForDescriptionBox, textBoxProperties::eventTitle, flag);
+
             addAnEventMenuEvents(userEvent, pageFlag, textBoxFlag, *currentPageTexture, head, eventInfo, textBoxProperties::titleBox,
                 textBoxProperties::dateBox, textBoxProperties::descriptionBox, textBoxProperties::enteredTextForTitleBox,
-                textBoxProperties::enteredTextForDateBox, textBoxProperties::enteredTextForDescriptionBox);
+                textBoxProperties::enteredTextForDateBox, textBoxProperties::enteredTextForDescriptionBox, flag);
+
             registerEvents(userEvent, pageFlag, textBoxFlag, *currentPageTexture, userInfo, 
                 textBoxProperties::enteredTextForUsernameBox, textBoxProperties::enteredTextForPasswordBox, textBoxProperties::username,
                 textBoxProperties::password);
+
             selectTextBox(userEvent, textBoxFlag);
+
+            if (userEvent.type == sf::Event::Closed)
+                window.close();
         }
 
 

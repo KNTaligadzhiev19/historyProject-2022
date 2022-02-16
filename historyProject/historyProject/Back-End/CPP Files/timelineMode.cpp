@@ -64,7 +64,7 @@ void setDataToNodes(NODE*& head, std::string& title, std::string& date, std::str
 
 void getDataFromFile(NODE*& head, std::fstream& eventInfo)
 {
-	eventInfo.open("eventInfo.txt", std::ios::out);
+	eventInfo.open("eventInfo.txt", std::ios::out | std::ios::app);
 	if (!eventInfo.is_open())
 	{
 		std::cout << "Can not open userInfo.txt";

@@ -1,7 +1,8 @@
 #include "../Header Files/viewAllEventsEvents.h"
 
 void viewAllEventsEvents(sf::Event userEvent, CURRENT_PAGE& pageFlag, SELECTED_TEXT_BOX& textBoxFlag, sf::Texture& currentPageTexture,
-    std::string& search, sf::Text& serachBar, NODE*& head, std::vector<sf::Text>& eventsAfterSearch)
+    std::string& search, sf::Text& serachBar, NODE*& head, std::vector<sf::Text>& eventsAfterSearch, std::string& titleStr, 
+    std::string& dateStr, std::string& descriptionStr, std::vector<std::string>& eventTitles, bool& flag)
 {
     switch (userEvent.type)
     {
@@ -46,6 +47,12 @@ void viewAllEventsEvents(sf::Event userEvent, CURRENT_PAGE& pageFlag, SELECTED_T
             pageFlag.timelineMenu = false;
             pageFlag.homeMenu = false;
             pageFlag.viewAllEvents = false;
+
+            titleStr = eventTitles[3];
+            dateStr = eventTitles[4];
+            descriptionStr = eventTitles[5];
+
+            flag = true;
         }
 
         else if (pageFlag.viewAllEvents == true && (userEvent.mouseButton.x >= 150 && userEvent.mouseButton.x <= 570) &&
