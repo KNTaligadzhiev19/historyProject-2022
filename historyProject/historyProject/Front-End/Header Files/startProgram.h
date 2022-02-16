@@ -1,5 +1,9 @@
 #pragma once
 #include "../../Back-End/Header Files/timelineMode.h"
+#include "../../Back-End/header Files/registerForm.h"
+#include "../../Back-End/header Files/loginForm.h"
+#include "../../Back-End/header Files/viewAllEventsPage.h"
+#include "../../Back-End/header Files/eventOptions.h"
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include <vector>
@@ -33,6 +37,8 @@ namespace textBoxProperties
     static sf::Text password;
     static sf::Text search;
     static std::vector<sf::Text> events;
+    static std::vector<sf::Text> eventsAfterSearch;
+    //bool searchFlag = false;
 
     static std::string enteredTextForTitleBox = "";
     static std::string enteredTextForDateBox = "";

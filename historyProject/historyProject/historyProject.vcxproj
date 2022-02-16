@@ -143,19 +143,35 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Back-End\CPP Files\eventOptions.cpp" />
     <ClCompile Include="Back-End\CPP Files\loginFrom.cpp" />
     <ClCompile Include="Back-End\CPP Files\registerForm.cpp" />
     <ClCompile Include="Back-End\CPP Files\timelineMode.cpp" />
     <ClCompile Include="Back-End\CPP Files\viewAllEventsPage.cpp" />
+    <ClCompile Include="Front-End\CPP Files\addAnEventMenuEvents.cpp" />
+    <ClCompile Include="Front-End\CPP Files\homeEvents.cpp" />
+    <ClCompile Include="Front-End\CPP Files\loginForm.cpp" />
+    <ClCompile Include="Front-End\CPP Files\registerPage.cpp" />
+    <ClCompile Include="Front-End\CPP Files\selectTextBox.cpp" />
     <ClCompile Include="Front-End\CPP Files\startProgram.cpp" />
+    <ClCompile Include="Front-End\CPP Files\timelineEvents.cpp" />
+    <ClCompile Include="Front-End\CPP Files\viewAllEventsEvents.cpp" />
     <ClCompile Include="historyProject.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Back-End\Header Files\eventOptions.h" />
     <ClInclude Include="Back-End\Header Files\loginForm.h" />
     <ClInclude Include="Back-End\Header Files\registerForm.h" />
     <ClInclude Include="Back-End\Header Files\timelineMode.h" />
     <ClInclude Include="Back-End\Header Files\viewAllEventsPage.h" />
+    <ClInclude Include="Front-End\Header Files\addAnEventMenuEvents.h" />
+    <ClInclude Include="Front-End\Header Files\homeEvents.h" />
+    <ClInclude Include="Front-End\Header Files\loginForm.h" />
+    <ClInclude Include="Front-End\Header Files\registerPage.h" />
+    <ClInclude Include="Front-End\Header Files\selectTextBox.h" />
     <ClInclude Include="Front-End\Header Files\startProgram.h" />
+    <ClInclude Include="Front-End\Header Files\timelineEvents.h" />
+    <ClInclude Include="Front-End\Header Files\viewAllEventsEvents.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
